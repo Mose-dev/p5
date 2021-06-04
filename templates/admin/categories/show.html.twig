@@ -1,9 +1,9 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Categories{% endblock %}
+{% block title %}Voir les catégories{% endblock %}
 
 {% block body %}
-    <h1>Categories</h1>
+    <h1>Voir les catégories</h1>
 
     <table class="table">
         <tbody>
@@ -22,9 +22,9 @@
         </tbody>
     </table>
 
-    <a href="{{ path('categories_index') }}">back to list</a>
+    <a href="{{ path('admin_categories_index') }}">back to list</a>
 
-    <a href="{{ path('categories_edit', {'id': category.id}) }}">edit</a>
+    <a href="{{ path('admin_categories_edit', {'id': category.id}) }}">edit</a>
 
-    {{ include('categories/_delete_form.html.twig') }}
+    {{ include('admin/categories/_delete_form.html.twig') }}
 {% endblock %}

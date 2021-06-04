@@ -2,11 +2,12 @@
 
 namespace App\Entity;
 
-use App\Repository\CategoriesRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
+use App\Repository\CategoriesRepository;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
 /**
  * @ORM\Entity(repositoryClass=CategoriesRepository::class)
@@ -45,6 +46,10 @@ class Categories
      * @ORM\OneToMany(targetEntity=Annonces::class, mappedBy="categories")
      */
     private $annonces;
+   
+    public function __toString(){
+        return $this->name; // Remplacer champ par une propriété "string" de l'entité
+    }
 
     public function __construct()
     {

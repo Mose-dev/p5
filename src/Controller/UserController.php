@@ -4,6 +4,9 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Form\UserType;
+use App\Entity\Annonces;
+use App\Form\AnnoncesType;
+use App\Repository\AnnoncesRepository;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -105,5 +108,26 @@ class UserController extends AbstractController
         }
 
         return $this->redirectToRoute('user_index');
+    }
+    #[Route('/annonces/new', name: 'annonces_new', methods: ['GET', 'POST'])]
+    public function nouvelleAnnonce(Request $request): Response
+    {
+        $annonce = new Annonces();
+        $form = $this->createForm(AnnoncesType::class, $annonce);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $annonce->setUser($this->getUser());
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($annonce);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('annonces_index');
+        }
+
+        return $this->render('annonces/new.html.twig', [
+            'annonce' => $annonce,
+            'form' => $form->createView(),
+        ]);
     }
 }
