@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Admin;
 
 use App\Entity\Categories;
 use App\Form\CategoriesType;
+use App\Repository\UserRepository;
 use App\Repository\CategoriesRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -20,6 +21,7 @@ class AdminController extends AbstractController
             'controller_name' => 'AdminController',
         ]);
     }
+//Routes de gestion des catégories
     #[Route('/index', name: 'categories_index', methods: ['GET'])]
     public function index2(CategoriesRepository $categoriesRepository): Response
     {
@@ -82,5 +84,15 @@ class AdminController extends AbstractController
         }
 
         return $this->redirectToRoute('admin_categories_index');
+    }
+    // Routes de gestion des users.
+    /**
+     * @Route("/user/index", name="user_index", methods={"GET"})
+     */
+    public function index3(UserRepository $userRepository): Response
+    {
+        return $this->render('admin/user/index.html.twig', [
+            'users' => $userRepository->findAll(),
+        ]);
     }
 }

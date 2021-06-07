@@ -77,6 +77,6 @@ class AnnoncesController extends AbstractController
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('annonces_index');
+        return $this->redirectToRoute('user_index');
     }
 }

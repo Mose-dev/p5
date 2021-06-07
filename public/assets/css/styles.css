@@ -3,3 +3,7 @@ width: 500px;
 height: 500px;
 margin: auto;
 }
+.btn-primary, .btn-success, .btn-danger{
+    width: 220px;
+}
+
