@@ -3,10 +3,12 @@
 {% block title %}Accueil{% endblock %}
 
 {% block body %}
-
-    <h1 class="text-center mt-5">Bienvenue chez Libre & Change<br>Le rendez-vous des professionnels de la plâtrerie </h1>
-    <h2 class="text-center mt-5">Votre site d'opportunités et d'échanges</h2>
-    <h3 class="text-center mt-5">Retrouver et diffuser</h3>
+    {% for message in app.flashes('success') %}
+        <div class="alert alert-success text-center" role="alert">{{ message }}</div>
+    {% endfor %}
+        <h1 class="text-center mt-5">Bienvenue chez Libre & Change<br>Le rendez-vous des professionnels de la plâtrerie </h1>
+        <h2 class="text-center mt-5">Votre site d'opportunités et d'échanges</h2>
+        <h3 class="text-center mt-5">Retrouver et diffuser</h3>
         
         <ul id="center" class="fs-3 mt-5 list-unstyled width: 300px height: 300px mx-auto">
             <li>Des propositions de sous-traitance</li>

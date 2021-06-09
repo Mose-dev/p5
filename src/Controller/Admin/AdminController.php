@@ -22,6 +22,11 @@ class AdminController extends AbstractController
             'controller_name' => 'AdminController',
         ]);
     }
+    #[Route('/profil', name: 'profil')]
+    public function profil(): Response
+    {
+        return $this->render('admin/user/profil.html.twig');
+    }
 //Routes de gestion des catégories
     #[Route('/index', name: 'categories_index', methods: ['GET'])]
     public function indexCategories(CategoriesRepository $categoriesRepository): Response
