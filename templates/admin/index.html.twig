@@ -1,20 +1,98 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello AdminController!{% endblock %}
+{% block title %}Administration{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
-
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
-
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ '/opt/lampp/htdocs/annonces/src/Controller/AdminController.php'|file_link(0) }}">src/Controller/AdminController.php</a></code></li>
-        <li>Your template at <code><a href="{{ '/opt/lampp/htdocs/annonces/templates/admin/index.html.twig'|file_link(0) }}">templates/admin/index.html.twig</a></code></li>
-    </ul>
+<!--Jumbotron-->
+<div class="container text-center">
+     <div class="row">
+          <div class="col mt-4">
+               <div class="jumbotron bg-transparent mt-5">
+                  <h1 class="text-center mt-4">Administré par {{ app.user. firstname }} {{ app.user.name}}</h1>  
+               </div>
+          </div>
+     </div>
 </div>
+<!-- Begin Page Content -->
+<div class="container text-center mt-5">
+     <div class="row justify-content-center">
+          <div class="col-xl-3 col-md-6 mb-4">
+               <div class="card shadow h-100 py-2">
+                    <div class="card-body">
+                         <div class="col-auto">
+                         <i class="far fa-address-book fa-3x text-success"></i>
+                         </div>
+                         <div class="font-weight-bold text-uppercase">
+                              <a class="text-success" href="{{ path('user_index') }}">Gerer votre profil</a>
+                         </div>
+                    </div>
+               </div>
+          </div>         
+          <div class="col-xl-3 col-md-6 mb-4">
+               <div class="card shadow h-100 py-2">
+                    <div class="card-body">
+                         <div class="col-auto">
+                         <i class="fas fa-diagnoses fa-3x text-success"></i>
+                         </div>   
+                         <div class=" font-weight-bold text-uppercase">
+                              <a class="text-success" href="{{ path('admin_categories_index') }}">Gerer les catégories</a>
+                         </div>
+                    </div>
+               </div>
+          </div>
+          <div class="col-xl-3 col-md-6 mb-4">
+               <div class="card shadow h-100 py-2">
+                    <div class="card-body">
+                         <div class="col-auto">
+                              <i class="fas fa-book-reader fa-3x text-success"></i>
+                         </div>   
+                         <div class="font-weight-bold text-uppercase">
+                              <a class="text-success" href="index.php?action=report">Gerer les annonces</a>
+                         </div>
+                    </div>
+               </div>
+          </div>
+     </div>
+     <div class="row justify-content-center">
+          
+          <div class="col-xl-3 col-md-6 mb-4">
+               <div class="card shadow h-100 py-2">
+                    <div class="card-body">
+                         <div class="col-auto">
+                              <i class="fas fa-users fa-2x text-primary"></i>
+                         </div>
+                         <div class="font-weight-bold text-uppercase">
+                              <a class="text-primary" href="index.php?action=getUsers">Gerer les adhérants</a> 
+                         </div>
+                    </div>
+               </div>
+          </div>
+          <div class="col-xl-3 col-md-6 mb-4">
+               <div class="card shadow h-100 py-2">
+                    <div class="card-body">
+                         <div class="col-auto">
+                              <i class="fas fa-paper-plane fa-2x text-primary"></i>
+                         </div>
+                         <div class="font-weight-bold text-uppercase">
+                              <a class="text-primary" href="index.php?action=getmessages">Gerer vos messages</a>
+                         </div>
+                    </div>
+               </div>
+          </div>
+          <div class="col-xl-3 col-md-6 mb-4">
+               <div class="card shadow h-100 py-2">
+                    <div class="card-body">
+                         <div class="col-auto">
+                         <i class="fas fa-bed fa-2x text-danger"></i>
+                         </div>
+                         <div class="font-weight-bold text-uppercase">
+                              <a class="text-danger"href="index.php?action=deconnexion">Deconnexion</a>
+                         </div>
+                    </div>
+               </div>
+          </div>
+     </div>
+</div>
+
+
 {% endblock %}

@@ -58,8 +58,8 @@ class AnnoncesController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
-
-            return $this->redirectToRoute('annonces_index');
+            $this->addFlash("success", "Annonce modifiée avec succès");
+            return $this->redirectToRoute('user_index');
         }
 
         return $this->render('annonces/edit.html.twig', [
@@ -75,6 +75,7 @@ class AnnoncesController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($annonce);
             $entityManager->flush();
+            $this->addFlash("success", "Annonce éliminée avec succès");
         }
 
         return $this->redirectToRoute('user_index');

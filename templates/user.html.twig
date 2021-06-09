@@ -48,41 +48,47 @@
             </div>
         </div>
     </nav>
-    <h1 class="text-center mt-5">Profil de {{ app.user.firstname}} {{ app.user.name}}</h1>
-     <div class="container">    
-            <div class="mx-2">
-                <a class="btn btn-primary" href="{{ path('user_edit', {id: app.user.id} )}}" role="button">Modifier le profil</a>   
+    {% for message in app.flashes('success') %}
+        <div class="alert alert-success text-center" role="alert">{{ message }}</div>
+    {% endfor %}
+        <h1 class="text-center mt-5">Profil de {{ app.user.firstname}} {{ app.user.name}}</h1>
+        <div class="container">    
+                <div class="mx-2">
+                    <a class="btn btn-primary" href="{{ path('user_edit', {id: app.user.id} )}}" role="button">Modifier le profil</a>   
+                </div>
+                <div class="mt-1 mx-2">
+                    <a class="btn btn-primary" href="{{ path('password_reset', {id: app.user.id} )}}" role="button">Modifier le mot de passe</a>
+                </div>
+                <div class="mt-1 mx-2">
+                    <a class="btn btn-primary" href="{{ path('annonces_new') }}" role="button">Créer une annonce</a>
+                </div>
+                <div class="mt-1 mx-2">
+                    <a class="btn btn-danger" href="{{ path('app_logout') }}" role="button">Deconnexion</a>
+                </div>
+            <div class="row mt-3">
+                <div class="col-3">
+                    Prénom:
+                </div>
+                <div class="col-9">
+                    {{ app.user.firstname}}
+                </div>
             </div>
-            <div class="mt-1 mx-2">
-                <a class="btn btn-primary" href="{{ path('user_edit', {id: app.user.id} )}}" role="button">Modifier le mot de passe</a>
+            <div class="row">
+                <div class="col-3">
+                    Nom :
+                </div>
+                <div class="col-9">
+                    {{ app.user.name}}
+                </div>
             </div>
-            <div class="mt-1 mx-2">
-                <a class="btn btn-primary" href="{{ path('annonces_new') }}" role="button">Créer une annonce</a>
-            </div>
-        <div class="row mt-3">
-            <div class="col-3">
-                Prénom:
-            </div>
-            <div class="col-9">
-                {{ app.user.firstname}}
+            <div class="row">
+                <div class="col-3">
+                Email :
+                </div>
+                <div class="col-9">
+                {{ app.user.email}}
             </div>
         </div>
-        <div class="row">
-            <div class="col-3">
-                Nom :
-            </div>
-            <div class="col-9">
-                {{ app.user.name}}
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-3">
-            Email :
-            </div>
-            <div class="col-9">
-            {{ app.user.email}}
-        </div>
-</div>
         {% block body %}
         
         

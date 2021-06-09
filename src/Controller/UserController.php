@@ -5,14 +5,17 @@ namespace App\Controller;
 use App\Entity\User;
 use App\Form\UserType;
 use App\Entity\Annonces;
+use App\Form\ProfilType;
 use App\Form\AnnoncesType;
-use App\Repository\AnnoncesRepository;
 use App\Repository\UserRepository;
+use App\Form\ChangePasswordFormType;
+use App\Repository\AnnoncesRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Security\Core\Validator\Constraints\UserPassword;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 /**
@@ -46,11 +49,8 @@ class UserController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($user);
             $entityManager->flush();
-
-            $this->addFlash("success", "Welcome to our application");
-
-
-            return $this->redirectToRoute('user_index');
+            $this->addFlash("success", "Bienvenue vous pouvez vous connecter");
+            return $this->redirectToRoute('app_home');
         }
 
         return $this->render('user/new.html.twig', [
@@ -74,16 +74,14 @@ class UserController extends AbstractController
      */
     public function edit(Request $request, User $user, EntityManagerInterface $entityManager, UserPasswordEncoderInterface $encoder): Response
     {
-        $form = $this->createForm(UserType::class, $user);
+        $form = $this->createForm(ProfilType::class, $user);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
 
-            $hashed = $encoder->encodePassword($user, $user->getPassword());
-
-            $user->setPassword($hashed);
-
             $this->getDoctrine()->getManager()->flush();
+
+            $this->addFlash("success", "Profil mis à jour avec succès");
 
             return $this->redirectToRoute('user_index');
         }
@@ -107,6 +105,33 @@ class UserController extends AbstractController
 
         return $this->redirectToRoute('user_index');
     }
+    //Changement du mot de passe
+    #[Route('/password/reset', name: 'password_reset', methods: ['GET', 'POST'])]
+    public function newPassword(Request $request, UserPasswordEncoderInterface $PasswordEncoder)
+    {
+        
+        if ($request->isMethod('POST')) {
+            $em = $this->getDoctrine()->getManager();
+
+            $user = $this->getUser();
+
+            if($request->request->get('pass') == $request->request->get('pass2'))
+            {
+                $user->setPassword($PasswordEncoder->encodePassword($user, $request->request->get('pass')));
+                $em->flush();
+                $this->addFlash('success', 'Mot de passe mis à jour avec succès');
+                    
+                return  $this->redirectToRoute('user_index');
+            }else
+            {
+                $this->addFlash('error', 'Les mots de passe ne sont pas identiques'); 
+            }
+        }
+            
+            return $this->render('user/editPass.html.twig');
+    }
+
+    //Création d'une annonce
     #[Route('/annonces/new', name: 'annonces_new', methods: ['GET', 'POST'])]
     public function nouvelleAnnonce(Request $request): Response
     {
@@ -119,8 +144,8 @@ class UserController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($annonce);
             $entityManager->flush();
-
-            return $this->redirectToRoute('annonces_index');
+            $this->addFlash("success", "Annonce créée avec succès");
+            return $this->redirectToRoute('user_index');
         }
 
         return $this->render('annonces/new.html.twig', [
@@ -128,4 +153,5 @@ class UserController extends AbstractController
             'form' => $form->createView(),
         ]);
     }
+    
 }
