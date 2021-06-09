@@ -21,8 +21,8 @@
                 <td>{{ category.name }}</td>
                 <td>{{ category.slug }}</td>
                 <td>
-                    <a href="{{ path('admin_categories_show', {'id': category.id}) }}">show</a>
-                    <a href="{{ path('admin_categories_edit', {'id': category.id}) }}">edit</a>
+                    <a href="{{ path('admin_categories_show', {'id': category.id}) }}">Voir</a>
+                    <a href="{{ path('admin_categories_edit', {'id': category.id}) }}">Modifier</a>
                 </td>
             </tr>
         {% else %}
@@ -32,6 +32,8 @@
         {% endfor %}
         </tbody>
     </table>
-
-    <a href="{{ path('admin_categories_new') }}">Create new</a>
+    <div>
+    <a class="btn btn-success mt-2 d-block" href="{{ path('admin_categories_new') }}">Créer un catégorie</a>
+    <a class="btn btn-primary mt-2 d-block" href="{{ path('admin_home') }}">Retour administration</a>
+    </div>
 {% endblock %}

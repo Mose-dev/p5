@@ -13,13 +13,6 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('/annonces')]
 class AnnoncesController extends AbstractController
 {
-    #[Route('/', name: 'annonces_index', methods: ['GET'])]
-    public function index(AnnoncesRepository $annoncesRepository): Response
-    {
-        return $this->render('annonces/index.html.twig', [
-            'annonces' => $annoncesRepository->findAll(),
-        ]);
-    }
 
     #[Route('/new', name: 'annonces_new', methods: ['GET', 'POST'])]
     public function new(Request $request): Response

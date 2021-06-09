@@ -4,95 +4,110 @@
         <meta charset="UTF-8">
         <title>{% block title %}Bienvenue{% endblock %}</title>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
-    
         {% block stylesheets %}
-        <link rel="stylesheet" href="{{ asset('assets/css/styles.css') }}">
+            <link rel="stylesheet" href="{{ asset('assets/css/styles.css') }}">
         {% endblock %}
-        
-
         {% block javascripts %}
             {#{{ encore_entry_script_tags('app') }}#}
         {% endblock %}
     </head>
     <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="{{ path('app_home') }}">Libre & Change</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="{{ path('app_home') }}">Accueil</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Sous-traitance</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Matériel</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Outillage</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Emploi</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ path('app_login') }}">Connexion</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ path('user_new') }}">Inscription</a>
-                    </li>
-                </ul>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="{{ path('app_home') }}">Libre & Change</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="{{ path('app_home') }}">Accueil</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Sous-traitance</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Matériel</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Outillage</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Emploi</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ path('app_login') }}">Connexion</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ path('user_new') }}">Inscription</a>
+                        </li>
+                    </ul>
+                </div>
             </div>
-        </div>
-    </nav>
-    {% for message in app.flashes('success') %}
-        <div class="alert alert-success text-center" role="alert">{{ message }}</div>
-    {% endfor %}
+        </nav>
+        {% for message in app.flashes('success') %}
+            <div class="alert alert-success text-center" role="alert">{{ message }}</div>
+        {% endfor %}
         <h1 class="text-center mt-5">Profil de {{ app.user.firstname}} {{ app.user.name}}</h1>
-        <div class="container">    
-                <div class="mx-2">
-                    <a class="btn btn-primary" href="{{ path('user_edit', {id: app.user.id} )}}" role="button">Modifier le profil</a>   
+        <!--Début de la partie contenu -->
+        <div class="container text-center mt-5">
+            <div class="row justify-content-center">
+                <div class="col-xl-3 col-md-6 mb-4">
+                    <div class="card shadow h-100 py-2">
+                        <div class="card-body">
+                            <div class="col-auto">
+                                <i class="far fa-address-card fa-3x text-success"></i>
+                            </div>
+                            <div class="font-weight-bold text-uppercase">
+                                <a class="text-success" href="{{ path('user_edit', {id: app.user.id} )}}">Modifier votre profil</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>         
+                <div class="col-xl-3 col-md-6 mb-4">
+                    <div class="card shadow h-100 py-2">
+                        <div class="card-body">
+                            <div class="col-auto">
+                                <i class="fas fa-key fa-3x text-success"></i>
+                                </div>   
+                                <div class=" font-weight-bold text-uppercase">
+                                    <a class="text-success" href="{{ path('password_reset', {id: app.user.id} )}}">Modifier le mot de Passe</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="mt-1 mx-2">
-                    <a class="btn btn-primary" href="{{ path('password_reset', {id: app.user.id} )}}" role="button">Modifier le mot de passe</a>
+                <div class="row justify-content-center">
+                    <div class="col-xl-3 col-md-6 mb-4">
+                        <div class="card shadow h-100 py-2">
+                            <div class="card-body">
+                                <div class="col-auto">
+                                    <i class="fas fa-book-reader fa-3x text-success"></i>
+                                </div>   
+                                    <div class="font-weight-bold text-uppercase">
+                                        <a class="text-success" href="{{ path('annonces_new') }}">Créer une annonce</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="col-auto">
+                                        <i class="fas fa-bed fa-2x text-danger"></i>
+                                    </div>
+                                    <div class="font-weight-bold text-uppercase">
+                                        <a class="text-danger"href="{{ path('app_logout') }}">Deconnexion</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="mt-1 mx-2">
-                    <a class="btn btn-primary" href="{{ path('annonces_new') }}" role="button">Créer une annonce</a>
-                </div>
-                <div class="mt-1 mx-2">
-                    <a class="btn btn-danger" href="{{ path('app_logout') }}" role="button">Deconnexion</a>
-                </div>
-            <div class="row mt-3">
-                <div class="col-3">
-                    Prénom:
-                </div>
-                <div class="col-9">
-                    {{ app.user.firstname}}
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-3">
-                    Nom :
-                </div>
-                <div class="col-9">
-                    {{ app.user.name}}
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-3">
-                Email :
-                </div>
-                <div class="col-9">
-                {{ app.user.email}}
-            </div>
-        </div>
-        {% block body %}
-        
-        
-        {% endblock %}
+            </div> 
+        </div>    
+        {% block body %}{% endblock %}
     </body>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/656b2e3df2.js" crossorigin="anonymous"></script>
 </html>

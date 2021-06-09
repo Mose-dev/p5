@@ -21,10 +21,9 @@
             </tr>
         </tbody>
     </table>
-
-    <a href="{{ path('admin_categories_index') }}">back to list</a>
-
-    <a href="{{ path('admin_categories_edit', {'id': category.id}) }}">edit</a>
-
+    <div>
+        <a class="btn btn-primary mt-2 d-block" href="{{ path('admin_categories_edit', {'id': category.id}) }}">Modifier</a>
+        <a class="btn btn-primary mt-2 d-block" href="{{ path('admin_categories_index') }}">Retour à l'index</a>
+    </div>
     {{ include('admin/categories/_delete_form.html.twig') }}
 {% endblock %}

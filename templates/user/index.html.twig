@@ -5,17 +5,19 @@
 {% block body %}
 
   <h1 class="text-center mt-5">Annonces de {{ app.user.firstname}} {{ app.user.name}} ({{ app.user.annonces|length }})</h1>
-    
-    {% for annonce in app.user.annonces %}
-      <div class="row mt-4">
-          <div class="col-3">
-              Titre :
-          </div>
-          <div class="col-9">
-            {{ annonce.title}}
-            <a href="{{ path('annonces_edit',{'id': annonce.id} )}}">Modifier ou supprimer</a>
-          </div>  
-      </div>   
-    {% endfor %}
-
+    <div class="container">
+      {% for annonce in app.user.annonces %}
+        <div class="row mt-4 mx-auto">
+            <div class="col-2">
+                Titre :
+            </div>
+            <div class="col-10">
+              {{ annonce.title}}
+              <a href="{{ path('annonces_edit',{'id': annonce.id} )}}">Modifier ou supprimer</a>
+            </div>  
+        </div>   
+      {% endfor %}
+    </div>
 {% endblock %}
+
+      

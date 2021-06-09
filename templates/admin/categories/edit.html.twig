@@ -5,8 +5,8 @@
 {% block body %}
     <h1>Editer les categories</h1>
 
-    {{ include('admin/categories/_form.html.twig', {'button_label': 'Update'}) }}
+    {{ include('admin/categories/_form.html.twig', {'button_label': 'Valider'}) }}
 
-    <a href="{{ path('admin_categories_index') }}">back to list</a>
+    <a class="btn btn-primary mt-2 d-block"href="{{ path('admin_categories_index') }}">Retour à l'index</a>
 
 {% endblock %}

@@ -5,6 +5,7 @@ namespace App\Controller\Admin;
 use App\Entity\Categories;
 use App\Form\CategoriesType;
 use App\Repository\UserRepository;
+use App\Repository\AnnoncesRepository;
 use App\Repository\CategoriesRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -23,7 +24,7 @@ class AdminController extends AbstractController
     }
 //Routes de gestion des catégories
     #[Route('/index', name: 'categories_index', methods: ['GET'])]
-    public function index2(CategoriesRepository $categoriesRepository): Response
+    public function indexCategories(CategoriesRepository $categoriesRepository): Response
     {
         return $this->render('admin/categories/index.html.twig', [
             'categories' => $categoriesRepository->findAll(),
@@ -89,10 +90,18 @@ class AdminController extends AbstractController
     /**
      * @Route("/user/index", name="user_index", methods={"GET"})
      */
-    public function index3(UserRepository $userRepository): Response
+    public function indexUser(UserRepository $userRepository): Response
     {
         return $this->render('admin/user/index.html.twig', [
             'users' => $userRepository->findAll(),
+        ]);
+    }
+    //Route des annonces
+    #[Route('/annonces/index', name: 'annonces_index', methods: ['GET'])]
+    public function indexAnnonces(AnnoncesRepository $annoncesRepository): Response
+    {
+        return $this->render('annonces/index.html.twig', [
+            'annonces' => $annoncesRepository->findAll(),
         ]);
     }
 }
