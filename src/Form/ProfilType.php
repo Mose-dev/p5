@@ -16,6 +16,7 @@ class ProfilType extends AbstractType
             ->add('email', EmailType::class)
             ->add('name')
             ->add('firstname')
+            //->add('password')
         ;
     }
 
