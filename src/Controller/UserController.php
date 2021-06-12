@@ -49,7 +49,9 @@ class UserController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($user);
             $entityManager->flush();
-            $this->addFlash("success", "Bienvenue vous pouvez vous connecter");
+            
+            $this->addFlash("success", "Bienvenue vous pouvez à present vous connecter");
+            
             return $this->redirectToRoute('app_home');
         }
 

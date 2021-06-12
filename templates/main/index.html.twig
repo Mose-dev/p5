@@ -3,18 +3,24 @@
 {% block title %}Accueil{% endblock %}
 
 {% block body %}
-    {% for message in app.flashes('success') %}
-        <div class="alert alert-success text-center" role="alert">{{ message }}</div>
-    {% endfor %}
-        <h1 class="text-center mt-5">Bienvenue chez Libre & Change<br>Le rendez-vous des professionnels de la plâtrerie </h1>
-        <h2 class="text-center mt-5">Votre site d'opportunités et d'échanges</h2>
-        <h3 class="text-center mt-5">Retrouver et diffuser</h3>
-        
-        <ul id="center" class="fs-3 mt-5 list-unstyled width: 300px height: 300px mx-auto">
-            <li>Des propositions de sous-traitance</li>
-            <li>Du matériel pour la construction</li>
-            <li>De l'outillage neuf ou d'occasion</li>
-            <li>Des offres et des demandes d'emploi</li>
-        </ul>
-
+    <div class="mt-5">
+        {% for message in app.flashes('success') %}
+            <div class="alert alert-success text-center" role="alert">{{ message }}</div>
+        {% endfor %}
+    </div>
+    <div id="margin-t" class="container">
+        <h1 class="text-center mt-5 text-light">Bienvenue chez Libre & Change<br>Le rendez-vous des professionnels de la plâtrerie </h1>
+        <h2  class="text-center mt-4 text-light fs-2">Votre site d'opportunités et d'échanges<h2>
+        <h3 class="text-center mt-3 text-light fs-2">Retrouver et diffuser</h3>
+        <div class="card w-75 mx-auto bg-transparent border-0">
+            <div class="card-body mx-auto">
+                <ul class="fs-2 list-unstyled text-light">
+                    <li>Des propositions de sous-traitance</li>
+                    <li>Du matériel pour la construction</li>
+                    <li>De l'outillage neuf ou d'occasion</li>
+                    <li>Des offres et demandes d'emploi</li>
+                </ul>
+            </div>
+        </div>
+    </div>
 {% endblock %}

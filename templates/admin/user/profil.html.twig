@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>{% block title %}Bienvenue{% endblock %}</title>
+        <title>{% block title %}Page de profil admin{% endblock %}</title>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
         {% block stylesheets %}
             <link rel="stylesheet" href="{{ asset('assets/css/styles.css') }}">
@@ -12,7 +12,7 @@
         {% endblock %}
     </head>
     <body>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <nav class="navbar fixed-top  navbar-expand-lg navbar-dark bg-primary">
             <div class="container-fluid">
                 <a class="navbar-brand" href="{{ path('app_home') }}">Libre & Change</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -45,12 +45,14 @@
                 </div>
             </div>
         </nav>
+        <div class="mt-5">
         {% for message in app.flashes('success') %}
             <div class="alert alert-success text-center" role="alert">{{ message }}</div>
         {% endfor %}
-        <h1 class="text-center mt-5">Profil de {{ app.user.firstname}} {{ app.user.name}}</h1>
+        </div>
+        <h1 id="margin-t" class="text-center text-light">Profil de {{ app.user.firstname}} {{ app.user.name}}</h1>
         <!--Début de la partie contenu -->
-        <div class="container text-center mt-5">
+        <div class="container text-center mt-5 ">
             <div class="row justify-content-center">
                 <div class="col-xl-3 col-md-6 mb-4">
                     <div class="card shadow h-100 py-2">
@@ -107,7 +109,7 @@
                 </div>
             </div> 
         </div> 
-        <h1 class="text-center mt-5">Annonces de {{ app.user.firstname}} {{ app.user.name}} ({{ app.user.annonces|length }})</h1>
+        <h1 class="text-center mt-5 text-light">Annonces de {{ app.user.firstname}} {{ app.user.name}} ({{ app.user.annonces|length }})</h1>
         <div class="container">
             {% for annonce in app.user.annonces %}
                 <div class="row mt-4 mx-auto">

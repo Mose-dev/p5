@@ -1,9 +1,16 @@
-#center{
-width: 500px;
-height: 500px;
-margin: auto;
+body{
+    background: url('../images/const.webp') no-repeat;
+} 
+/*formulaires et contenu des pages en général*/
+#margin-t{
+    margin-top: 16%;
 }
+/*Boutons de validation et navigation*/
 .btn-primary, .btn-success, .btn-danger{
-    width: 220px;
+    width: 190px;
 }
+a{
+    color:white;
+}
+
 

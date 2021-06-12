@@ -1,10 +1,8 @@
 {% extends 'user.html.twig' %}
 
-{% block title %}Page de profil{% endblock %}
-
 {% block body %}
 
-  <h1 class="text-center mt-5">Annonces de {{ app.user.firstname}} {{ app.user.name}} ({{ app.user.annonces|length }})</h1>
+  <h1 class="text-center mt-5 text-light">Annonces de {{ app.user.firstname}} {{ app.user.name}} ({{ app.user.annonces|length }})</h1>
     <div class="container">
       {% for annonce in app.user.annonces %}
         <div class="row mt-4 mx-auto">
