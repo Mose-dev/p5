@@ -1,9 +1,12 @@
 body{
-    background: url('../images/const.webp') no-repeat;
+    background: #057dba;
 } 
 /*formulaires et contenu des pages en général*/
 #margin-t{
     margin-top: 16%;
+}
+#margin-t1{
+    margin-top: 5%;
 }
 /*Boutons de validation et navigation*/
 .btn-primary, .btn-success, .btn-danger{

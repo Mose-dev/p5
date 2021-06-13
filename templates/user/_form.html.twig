@@ -1,5 +1,17 @@
 
 {{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn btn-success mt-3">{{ button_label|default('Valider') }}</button>
+    {% if form.password is defined %}
+        <div id="margin-t" class="container text-center">
+            <div class="card w-75 mx-auto bg-transparent border-0 mx-auto">
+                <div class="card-body mx-auto">
+                    <h1 class="h3 mb-3 fs-1 text-light">Inscription</h1>
+                    <div class="form-group">{{ form_row(form.email)}}</div>
+                    <div class="form-group">{{ form_row(form.name)}}</div>
+                    <div class="form-group">{{ form_row(form.firstname)}}</div>
+                    <div class="form-group">{{ form_row(form.password)}}</div>
+                    <button class="btn btn-primary mt-3 border-light">{{ button_label|default('Valider') }}</button>
+                </div>    
+            </div>
+        </div>
+    {% endif %}    
 {{ form_end(form) }}

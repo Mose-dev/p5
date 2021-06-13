@@ -1,21 +1,23 @@
 {% extends 'user.html.twig' %}
 
 {% block body %}
-
-  <h1 class="text-center mt-5 text-light">Annonces de {{ app.user.firstname}} {{ app.user.name}} ({{ app.user.annonces|length }})</h1>
-    <div class="container">
-      {% for annonce in app.user.annonces %}
-        <div class="row mt-4 mx-auto">
-            <div class="col-2">
-                Titre :
-            </div>
-            <div class="col-10">
-              {{ annonce.title}}
-              <a href="{{ path('annonces_edit',{'id': annonce.id} )}}">Modifier ou supprimer</a>
-            </div>  
+  <div class="container ">
+    <h1 class="text-center mt-5 text-light">Annonces de {{ app.user.firstname}} {{ app.user.name}} ({{ app.user.annonces|length }})</h1>
+      <div class="card mx-auto bg-transparent border-0">
+        <div class="card-body mx-auto">
+          {% for annonce in app.user.annonces %}
+              <div class="row mt-4 mx-auto">
+                <div class="col-4">
+                  Titre :
+                </div>
+              <div class="col-8">
+                {{ annonce.title}}
+                <a href="{{ path('annonces_edit',{'id': annonce.id} )}}">Modifier</a>
+              </div>  
         </div>   
-      {% endfor %}
-    </div>
+          {% endfor %} 
+      </div>
+  </div>
 {% endblock %}
 
       

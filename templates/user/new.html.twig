@@ -3,9 +3,5 @@
 {% block title %}Inscription{% endblock %}
 
 {% block body %}
-    <h1>Inscription</h1>
-
-    {{ include('user/_form.html.twig') }}
-
-    <a class="btn btn-primary mt-2 " href="{{ path('app_home') }}">Retour</a>
+   {{ include('user/_form.html.twig') }}
 {% endblock %}
