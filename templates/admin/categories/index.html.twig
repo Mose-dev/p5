@@ -3,37 +3,39 @@
 {% block title %}index des catégories{% endblock %}
 
 {% block body %}
-    <h1>Index des catégories</h1>
+    <div id="margin-t" class="container text-center">
+        <h1 class="text-light">Index des catégories</h1>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>Slug</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for category in categories %}
-            <tr>
-                <td>{{ category.id }}</td>
-                <td>{{ category.name }}</td>
-                <td>{{ category.slug }}</td>
-                <td>
-                    <a href="{{ path('admin_categories_show', {'id': category.id}) }}">Voir</a>
-                    <a href="{{ path('admin_categories_edit', {'id': category.id}) }}">Modifier</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="4">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-    <div>
-    <a class="btn btn-success mt-2 d-block" href="{{ path('admin_categories_new') }}">Créer un catégorie</a>
-    <a class="btn btn-primary mt-2 d-block" href="{{ path('admin_home') }}">Retour administration</a>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>Slug</th>
+                    <th>actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for category in categories %}
+                <tr>
+                    <td>{{ category.id }}</td>
+                    <td>{{ category.name }}</td>
+                    <td>{{ category.slug }}</td>
+                    <td>
+                        <a href="{{ path('admin_categories_show', {'id': category.id}) }}">Voir</a>
+                        <a href="{{ path('admin_categories_edit', {'id': category.id}) }}">Modifier</a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="4">Aucune catégorie</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+       
+        <div><a class="btn btn-success mt-2 border-light text-center" href="{{ path('admin_categories_new') }}">Créer un catégorie</a></div>
+        <div><a class="btn btn-primary mt-2 border-light" href="{{ path('admin_home') }}">Retour administration</a></div>
+        
     </div>
 {% endblock %}

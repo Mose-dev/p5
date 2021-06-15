@@ -3,9 +3,15 @@
 {% block title %}Créer une catégorie{% endblock %}
 
 {% block body %}
-    <h1>Créer un catégorie</h1>
+    <div id="margin-t" class="container text-center">
+        <div class="card w-75 mx-auto bg-transparent border-0 mx-auto">
+            <div class="card-body mx-auto">
+                <h1 class="text-light">Créer un catégorie</h1>
 
-    {{ include('admin/categories/_form.html.twig') }}
+                {{ include('admin/categories/_form.html.twig') }}
 
-   <a class="btn btn-primary mt-2 d-block"href="{{ path('admin_categories_index') }}">Retour à l'index</a>
+                <div><a class="btn btn-primary mt-2 border-light" href="{{ path('admin_categories_index') }}">Retour à l'index</a></div>
+            </div>
+        </div>
+    </div>
 {% endblock %}

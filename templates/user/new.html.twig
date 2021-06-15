@@ -3,5 +3,16 @@
 {% block title %}Inscription{% endblock %}
 
 {% block body %}
-   {{ include('user/_form.html.twig') }}
+  
+<div id="margin-t" class="container text-center">
+        <div class="card w-75 mx-auto bg-transparent border-0 mx-auto">
+            <div class="card-body mx-auto">
+                <h1 class="h3 mb-3 fs-1 text-light">S'inscrire</h1>
+
+                {{ include('user/_form.html.twig', {'button_label': 'Valider'}) }}
+
+            </div>
+        </div>
+</div>
+
 {% endblock %}

@@ -7,6 +7,7 @@ use Symfony\Component\Form\AbstractType;
 use FOS\CKEditorBundle\Form\Type\CKEditorType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
 class AnnoncesType extends AbstractType
 {
@@ -14,7 +15,7 @@ class AnnoncesType extends AbstractType
     {
         $builder
             ->add('title')
-            ->add('content',CKEditorType::class)
+            ->add('content', CKEditorType::class)
             ->add('categories')
         ;
     }
