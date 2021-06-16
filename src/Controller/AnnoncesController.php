@@ -35,14 +35,6 @@ class AnnoncesController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'annonces_show', methods: ['GET'])]
-    public function show(Annonces $annonce): Response
-    {
-        return $this->render('annonces/show.html.twig', [
-            'annonce' => $annonce,
-        ]);
-    }
-
     #[Route('/{id}/edit', name: 'annonces_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Annonces $annonce): Response
     {
@@ -73,4 +65,5 @@ class AnnoncesController extends AbstractController
 
         return $this->redirectToRoute('user_index');
     }
+   
 }

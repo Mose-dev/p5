@@ -2,7 +2,9 @@
 
 namespace App\Controller\Admin;
 
+use App\Entity\Annonces;
 use App\Entity\Categories;
+use App\Form\AnnoncesType;
 use App\Form\CategoriesType;
 use App\Repository\UserRepository;
 use App\Repository\AnnoncesRepository;
@@ -27,7 +29,9 @@ class AdminController extends AbstractController
     {
         return $this->render('admin/user/profil.html.twig');
     }
-//Routes de gestion des catégories
+
+    //Gestion des catégories
+    
     #[Route('/index', name: 'categories_index', methods: ['GET'])]
     public function indexCategories(CategoriesRepository $categoriesRepository): Response
     {
@@ -91,7 +95,9 @@ class AdminController extends AbstractController
 
         return $this->redirectToRoute('admin_categories_index');
     }
-    // Routes de gestion des users.
+    
+    // Gestion des adhérants.
+    
     /**
      * @Route("/user/index", name="user_index", methods={"GET"})
      */
@@ -101,12 +107,48 @@ class AdminController extends AbstractController
             'users' => $userRepository->findAll(),
         ]);
     }
-    //Route des annonces
+    
+    //Gestion des annonces
+    
     #[Route('/annonces/index', name: 'annonces_index', methods: ['GET'])]
     public function indexAnnonces(AnnoncesRepository $annoncesRepository): Response
     {
-        return $this->render('annonces/index.html.twig', [
+        return $this->render('admin/annonces/index.html.twig', [
             'annonces' => $annoncesRepository->findAll(),
         ]);
+    }
+    #[Route('/{id}/show', name: 'annonces_show', methods: ['GET'])]
+    public function showAnnonces(Annonces $annonce): Response
+    {
+        return $this->render('admin/annonces/show.html.twig', [
+            'annonce' => $annonce,
+        ]);
+    }
+    #[Route('/{id}/edit/annonces', name: 'annonces_edit', methods: ['GET', 'POST'])]
+    public function editerAnnonces(Request $request, Annonces $annonce): Response
+    {
+        $form = $this->createForm(AnnoncesType::class, $annonce);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $this->getDoctrine()->getManager()->flush();
+            return $this->redirectToRoute('admin_annonces_index');
+        }
+
+        return $this->render('admin/annonces/edit.html.twig', [
+            'annonce' => $annonce,
+            'form' => $form->createView(),
+        ]);
+    }
+    #[Route('/{id}/delete', name: 'annonces_delete', methods: ['POST'])]
+    public function deleteAnnonces(Request $request, Annonces $annonce): Response
+    {
+        if ($this->isCsrfTokenValid('delete'.$annonce->getId(), $request->request->get('_token'))) {
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->remove($annonce);
+            $entityManager->flush();
+        }
+
+        return $this->redirectToRoute('admin_annonces_index');
     }
 }
