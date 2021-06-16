@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Créer une annonce{% endblock %}
+
+{% block body %}
+
+<div id="margin-t" class="container text-center">
+    <h1 class="text-light text-center">Créer une annonce</h1>
+
+    {{ include('annonces/_form.html.twig') }}
+
+    <a class="btn btn-primary mt-2 border-light" href="{{ path('admin_profil') }}">Retour au profil</a>
+</div>
+
+{% endblock %}

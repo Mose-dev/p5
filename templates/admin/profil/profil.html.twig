@@ -62,7 +62,6 @@
         </div>
         <!--Début de la partie contenu -->
         <div class="container text-center mt-5">
-            <a class="btn btn-primary mb-2 border-light" href="{{ path('admin_home') }}">Retour administration</a>
             <div class="row justify-content-center">
                 <div class="col-xl-3 col-md-6 mb-4">
                     <div class="card shadow h-100 py-2">
@@ -71,7 +70,7 @@
                                 <i class="far fa-address-card fa-3x text-success"></i>
                             </div>
                             <div class="font-weight-bold text-uppercase">
-                                <a class="text-success" href="{{ path('user_edit', {id: app.user.id} )}}">Modifier votre profil</a>
+                                <a class="text-success" href="{{ path('admin_edit_profil', {id: app.user.id} )}}">Modifier votre profil</a>
                             </div>
                         </div>
                     </div>
@@ -83,7 +82,7 @@
                                 <i class="fas fa-key fa-3x text-success"></i>
                                 </div>   
                                 <div class=" font-weight-bold text-uppercase">
-                                    <a class="text-success" href="{{ path('password_reset', {id: app.user.id} )}}">Modifier le mot de Passe</a>
+                                    <a class="text-success" href="{{ path('admin_password_reset', {id: app.user.id} )}}">Modifier le mot de Passe</a>
                                 </div>
                             </div>
                         </div>
@@ -97,7 +96,7 @@
                                     <i class="fas fa-book-reader fa-3x text-success"></i>
                                 </div>   
                                     <div class="font-weight-bold text-uppercase">
-                                        <a class="text-success" href="{{ path('annonces_new') }}">Créer une annonce</a>
+                                        <a class="text-success" href="{{ path('admin_annonces_new') }}">Créer une annonce</a>
                                     </div>
                                 </div>
                             </div>
@@ -117,6 +116,7 @@
                     </div>
                  </div>
             </div>
+            <div class="text-center"><a class="btn btn-primary mb-2 border-light" href="{{ path('admin_home') }}">Retour administration</a><div>
         </div> 
         <div class="container ">
             <h1 class="text-center mt-5 text-light">Annonces de {{ app.user.firstname}} {{ app.user.name}} ({{ app.user.annonces|length }})</h1>
@@ -129,7 +129,7 @@
                         </div>
                     <div class="col-8">
                         {{ annonce.title}}
-                        <a href="{{ path('annonces_edit',{'id': annonce.id} )}}">Modifier</a>
+                        <a href="{{ path('admin_annonces_edit_profil',{'id': annonce.id} )}}">Modifier</a>
                     </div>  
                 </div>   
                 {% endfor %} 
