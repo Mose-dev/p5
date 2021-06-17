@@ -16,7 +16,12 @@ class AnnoncesType extends AbstractType
         $builder
             ->add('title')
             ->add('content', CKEditorType::class)
-            ->add('categories')
+            ->add('categories',  ChoiceType::class, [
+                'choices' => [
+                    'In Stock' => true,
+                    'Out of Stock' => false,
+                ],
+            ])
         ;
     }
 

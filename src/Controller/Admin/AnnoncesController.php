@@ -23,7 +23,7 @@ class AnnoncesController extends AbstractController
     }
     //Gestion des annonces page admin
     
-    #[Route('/annonces/index', name: 'index', methods: ['GET'])]
+    #[Route('/index', name: 'index', methods: ['GET'])]
     public function indexAnnonces(AnnoncesRepository $annoncesRepository): Response
     {
         return $this->render('admin/annonces/index.html.twig', [

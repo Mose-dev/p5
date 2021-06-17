@@ -143,7 +143,7 @@ class AdminController extends AbstractController
         ]);
     }
     
-<<<<<<< HEAD
+
     //Gestion des annonces page admin
     
     #[Route('/annonces/index', name: 'annonces_index', methods: ['GET'])]
@@ -219,7 +219,7 @@ class AdminController extends AbstractController
 
         return $this->redirectToRoute('admin_annonces_index');
     }
-=======
->>>>>>> day
+
+
     
 }
