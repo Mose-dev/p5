@@ -34,7 +34,7 @@ class AdminController extends AbstractController
         return $this->render('admin/profil/profil.html.twig');
     }
     
-    //Modification du profil page profil admin
+    //Modification du profil/page profil admin
     
     /**
      * @Route("/{id}/edit", name="edit_profil", methods={"GET","POST"})
@@ -62,7 +62,7 @@ class AdminController extends AbstractController
         ]);
     }
     
-    //Modification du mot de passe profil
+    //Modification du mot de passe profil admin
    
     #[Route('/password/reset', name: 'password_reset', methods: ['GET', 'POST'])]
     public function newPassword(Request $request, UserPasswordEncoderInterface $PasswordEncoder)
@@ -89,7 +89,7 @@ class AdminController extends AbstractController
             return $this->render('admin/profil/editpass.html.twig');
     }
     
-    //Modification des annonces profil
+    //Modification des annonces profil admin
     
     #[Route('/{id}/edit/annonces/profil', name: 'annonces_edit_profil', methods: ['GET', 'POST'])]
     public function editerAnnoncesProfil(Request $request, Annonces $annonce): Response
@@ -108,7 +108,7 @@ class AdminController extends AbstractController
         ]);
     }
 
-    //Création des annonces profil
+    //Création des annonces profil admin
    
     #[Route('/annonces/new', name: 'annonces_new', methods: ['GET', 'POST'])]
     public function newAnnonce(Request $request)
@@ -152,6 +152,9 @@ class AdminController extends AbstractController
             'annonces' => $annoncesRepository->findAll(),
         ]);
     }
+    
+    //Création des annonces
+    
     #[Route('annonces/dash/new', name: 'annonces_dash_new', methods: ['GET', 'POST'])]
     public function new(Request $request): Response
     {
@@ -172,6 +175,9 @@ class AdminController extends AbstractController
             'form' => $form->createView(),
         ]);
     }
+    
+    // Vue des annonces
+    
     #[Route('/{id}/show', name: 'annonces_show', methods: ['GET'])]
     public function showAnnonces(Annonces $annonce): Response
     {
@@ -179,6 +185,9 @@ class AdminController extends AbstractController
             'annonce' => $annonce,
         ]);
     }
+
+    //modification des annonces
+    
     #[Route('/{id}/edit/annonces', name: 'annonces_edit', methods: ['GET', 'POST'])]
     public function editerAnnonces(Request $request, Annonces $annonce): Response
     {
@@ -195,6 +204,9 @@ class AdminController extends AbstractController
             'form' => $form->createView(),
         ]);
     }
+
+    //Elimination des annonces
+    
     #[Route('/{id}/delete', name: 'annonces_delete', methods: ['POST'])]
     public function deleteAnnonces(Request $request, Annonces $annonce): Response
     {
