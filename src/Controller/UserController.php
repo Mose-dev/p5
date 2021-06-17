@@ -108,7 +108,7 @@ class UserController extends AbstractController
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('app_home');
+        return $this->redirectToRoute('admin_user_index');
     }
     //Changement du mot de passe
     #[Route('/password/reset', name: 'password_reset', methods: ['GET', 'POST'])]

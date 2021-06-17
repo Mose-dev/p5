@@ -1,5 +1,5 @@
-<form method="post" action="{{ path('user_delete', {'id': user.id}) }}" onsubmit="return confirm('Etes vous sûr de vouloir nous quitter ?');">
+<form method="post" action="{{ path('user_delete', {'id': user.id}) }}" onsubmit="return confirm('Etes vous sûr de vouloir éliminer cet adhérant ?');">
     <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ user.id) }}">
-    <button class="btn btn-danger mt-2 border-light">Se désinscrire</button>
+    <button class="btn btn-danger mt-2 border-light">Eliminer</button>
 </form>
 

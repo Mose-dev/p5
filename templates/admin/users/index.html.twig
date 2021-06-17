@@ -1,42 +1,43 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Gerer les adhérants{% endblock %}
+{% block title %}Index des adhérants{% endblock %}
 
 {% block body %}
-    <h1>Gerer les adhérants</h1>
+    <div id="margin-t" class="container text-center">
+        <h1 class="text-light">Index des adhérants</h1>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Email</th>
-                <th>Roles</th>
-                <th>Password</th>
-                <th>Name</th>
-                <th>Firstname</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for user in users %}
-            <tr>
-                <td>{{ user.id }}</td>
-                <td>{{ user.email }}</td>
-                <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
-                <td>{{ user.password }}</td>
-                <td>{{ user.name }}</td>
-                <td>{{ user.firstname }}</td>
-                <td>
-                    <a href="{{ path('user_show', {'id': user.id}) }}">Voir</a>
-                    <a href="{{ path('user_edit', {'id': user.id}) }}">Modifier</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="7">Aucun adhérant</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-    
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Email</th>
+                    <th>Roles</th>
+                    <th>Password</th>
+                    <th>Name</th>
+                    <th>Firstname</th>
+                    <th>actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for user in users %}
+                <tr>
+                    <td>{{ user.id }}</td>
+                    <td>{{ user.email }}</td>
+                    <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
+                    <td>{{ user.password }}</td>
+                    <td>{{ user.name }}</td>
+                    <td>{{ user.firstname }}</td>
+                    <td>
+                        <a href="{{ path('user_show', {'id': user.id}) }}">Voir</a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="7">Aucun adhérant</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        <div><a class="btn btn-primary mt-2 border-light" href="{{ path('admin_home') }}">Retour administration</a></div> 
+    </div>
 {% endblock %}

@@ -27,7 +27,6 @@
                             <td>{{ annonce.createdAt ? annonce.createdAt|date('Y-m-d H:i:s') : '' }}</td>
                             <td>
                                 <a href="{{ path('admin_annonces_show', {'id': annonce.id}) }}">Voir</a>
-                                <a href="{{ path('admin_annonces_edit', {'id': annonce.id}) }}">Modifier</a>
                             </td>
                         </tr>
                     {% else %}
@@ -37,7 +36,7 @@
                     {% endfor %}
                 </tbody>
             </table>
-            
-            <div><a class="btn btn-primary mt-2 border-light" href="{{ path('admin_home') }}">Retour administration</a></div>
+                <div><a class="btn btn-success mt-2 border-light" href="{{ path('admin_annonces_dash_new') }}">Créer une annonce</a></div>  
+                <div><a class="btn btn-primary mt-2 border-light" href="{{ path('admin_home') }}">Retour administration</a></div>
     </div>
 {% endblock %}

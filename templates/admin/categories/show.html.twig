@@ -23,9 +23,7 @@
             </tbody>
         </table>
         
-        <div><a class="btn btn-success mt-2 border-light" href="{{ path('admin_categories_edit', {'id': category.id}) }}">Modifier</a>
-        <div><a class="btn btn-primary mt-2 border-light" href="{{ path('admin_categories_index') }}">Retour à l'index</a>
-        
-        {{ include('admin/categories/_delete_form.html.twig') }}
+        <div><a class="btn btn-success mt-2 border-light" href="{{ path('admin_categories_edit', {'id': category.id}) }}">Modifier</a></div>
+        <div><a class="btn btn-primary mt-2 border-light" href="{{ path('admin_categories_index') }}">Retour à l'index</a></div>
     </div>
 {% endblock %}

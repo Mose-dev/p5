@@ -11,6 +11,10 @@
                  {{ include('admin/categories/_form.html.twig', {'button_label': 'Valider'}) }}
 
                 <div><a class="btn btn-primary mt-2 border-light"href="{{ path('admin_categories_index') }}">Retour à l'index</a></div>
+
+                 
+                {{ include('admin/categories/_delete_form.html.twig') }}
+            
             </div>
         </div>    
     </div>
