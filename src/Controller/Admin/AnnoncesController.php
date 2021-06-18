@@ -15,21 +15,24 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class AnnoncesController extends AbstractController
 {
     #[Route('/', name: 'home')]
-    public function index(AnnoncesRepository $annoncesRepository): Response
+    public function index(): Response
     {
         return $this->render('admin/index.html.twig', [
-            'annonces' => $annoncesRepository->findAll(),
+            'controller_name' => 'AnnoncesController',
         ]);
     }
     //Gestion des annonces page admin
     
-    #[Route('/index', name: 'index', methods: ['GET'])]
+    #[Route('/annonces/index', name: 'index', methods: ['GET'])]
     public function indexAnnonces(AnnoncesRepository $annoncesRepository): Response
     {
         return $this->render('admin/annonces/index.html.twig', [
             'annonces' => $annoncesRepository->findAll(),
         ]);
     }
+    
+    //Création des annonces
+    
     #[Route('annonces/dash/new', name: 'dash_new', methods: ['GET', 'POST'])]
     public function new(Request $request): Response
     {
@@ -50,6 +53,9 @@ class AnnoncesController extends AbstractController
             'form' => $form->createView(),
         ]);
     }
+    
+    // Vue des annonces
+    
     #[Route('/{id}/show', name: 'show', methods: ['GET'])]
     public function showAnnonces(Annonces $annonce): Response
     {
@@ -57,6 +63,9 @@ class AnnoncesController extends AbstractController
             'annonce' => $annonce,
         ]);
     }
+
+    //modification des annonces
+    
     #[Route('/{id}/edit/annonces', name: 'edit', methods: ['GET', 'POST'])]
     public function editerAnnonces(Request $request, Annonces $annonce): Response
     {
@@ -73,6 +82,9 @@ class AnnoncesController extends AbstractController
             'form' => $form->createView(),
         ]);
     }
+
+    //Elimination des annonces
+    
     #[Route('/{id}/delete', name: 'delete', methods: ['POST'])]
     public function deleteAnnonces(Request $request, Annonces $annonce): Response
     {
@@ -84,5 +96,4 @@ class AnnoncesController extends AbstractController
 
         return $this->redirectToRoute('admin_annonces_index');
     }
-    
 }
