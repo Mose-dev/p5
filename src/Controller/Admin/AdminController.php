@@ -88,25 +88,6 @@ class AdminController extends AbstractController
             
             return $this->render('admin/profil/editpass.html.twig');
     }
-    
-    //Modification des annonces profil admin
-    
-    #[Route('/{id}/edit/annonces/profil', name: 'annonces_edit_profil', methods: ['GET', 'POST'])]
-    public function editerAnnoncesProfil(Request $request, Annonces $annonce): Response
-    {
-        $form = $this->createForm(AnnoncesType::class, $annonce);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
-            return $this->redirectToRoute('admin_profil');
-        }
-
-        return $this->render('admin/profil/editannonce.html.twig', [
-            'annonce' => $annonce,
-            'form' => $form->createView(),
-        ]);
-    }
 
     //Création des annonces profil admin
    
@@ -138,6 +119,36 @@ class AdminController extends AbstractController
         }
          
         return $this->render('admin/profil/newannonce.html.twig', [
+            'annonce' => $annonce,
+            'form' => $form->createView(),
+        ]);
+    }
+    
+    //Modification des annonces profil admin
+    
+    #[Route('/{id}/edit/annonces/profil', name: 'annonces_edit_profil', methods: ['GET', 'POST'])]
+    public function editerAnnoncesProfil(Request $request, Annonces $annonce): Response
+    {
+        $form = $this->createForm(AnnoncesType::class, $annonce);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $images = $form->get('images')->getData();
+            foreach($images as $image){
+                $fichier = md5(uniqid()) . '.' . $image->guessExtension();
+                $image->move(
+                    $this->getParameter('images_directory'),
+                    $fichier
+                );
+                $img = new Images();
+                $img->setName($fichier);
+                $annonce->addImage($img);
+            }
+            $this->getDoctrine()->getManager()->flush();
+            return $this->redirectToRoute('admin_profil');
+        }
+
+        return $this->render('admin/profil/editannonce.html.twig', [
             'annonce' => $annonce,
             'form' => $form->createView(),
         ]);
