@@ -7,7 +7,7 @@
     <h1 class="text-light">Modifier l'annonce</h1>
         {{ include('annonces/_form.html.twig', {'button_label': 'Valider'}) }}
         <div><a id="btn" class="btn btn-primary mt-2 border-light"href="{{ path('admin_profil') }}">Retour au profil</a></div>
-       <div class="mb-3">{{ include('admin/annonces/delete.html.twig') }}</div>
+       <div class="mb-3">{{ include('admin/profil/deleteannonce.html.twig') }}</div>
         
 </div>
 {% endblock %}

@@ -23,6 +23,12 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
  */
 class UserController extends AbstractController
 {
+    #[Route('/index', name: 'user_index')]
+    public function index(): Response
+    {
+        return $this->render('user/index.html.twig');
+    }
+
     /**
      * @Route("/new", name="user_new", methods={"GET","POST"})
      */

@@ -6,14 +6,13 @@ use App\Entity\User;
 use App\Entity\Annonces;
 use App\Form\ProfilType;
 use App\Form\AnnoncesType;
-use App\Repository\UserRepository;
-use App\Repository\AnnoncesRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+use Symfony\Component\Security\Core\Security;
 
 #[Route('/admin', name: 'admin_')]
 class AdminController extends AbstractController
@@ -111,13 +110,14 @@ class AdminController extends AbstractController
     //Création des annonces profil admin
    
     #[Route('/annonces/new', name: 'annonces_new', methods: ['GET', 'POST'])]
-    public function newAnnonce(Request $request)
+    public function newAnnonce(Request $request, Security $security )
     {
         $annonce = new Annonces();
         $form = $this->createForm(AnnoncesType::class, $annonce);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $annonce->setUser($security->getUser());
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($annonce);
             $entityManager->flush();
@@ -129,6 +129,20 @@ class AdminController extends AbstractController
             'annonce' => $annonce,
             'form' => $form->createView(),
         ]);
+    }
+
+    //Elimination des annonces profil
+     
+    #[Route('/{id}', name: 'delete_profil', methods: ['POST'])]
+    public function deleteAnnonces(Request $request, Annonces $annonce): Response
+    {
+        if ($this->isCsrfTokenValid('delete'.$annonce->getId(), $request->request->get('_token'))) {
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->remove($annonce);
+            $entityManager->flush();
+        }
+
+        return $this->redirectToRoute('admin_profil');
     }
     
    
