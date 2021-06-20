@@ -3,14 +3,15 @@
 namespace App\Controller\Admin;
 
 
+use App\Entity\Images;
 use App\Entity\Annonces;
 use App\Form\AnnoncesType;
 use App\Repository\AnnoncesRepository;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Security\Core\Security;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Security\Core\Security;
 
 #[Route('/admin/annonces', name: 'admin_annonces_')]
 class AnnoncesController extends AbstractController
@@ -42,7 +43,18 @@ class AnnoncesController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $annonce->setUser($security->getUser()); 
+            $annonce->setUser($security->getUser());
+            $images = $form->get('images')->getData();
+            foreach($images as $image){
+                $fichier = md5(uniqid()) . '.' . $image->guessExtension();
+                $image->move(
+                    $this->getParameter('images_directory'),
+                    $fichier
+                );
+                $img = new Images();
+                $img->setName($fichier);
+                $annonce->addImage($img);
+            } 
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($annonce);
             $entityManager->flush();

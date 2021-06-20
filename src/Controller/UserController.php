@@ -133,28 +133,5 @@ class UserController extends AbstractController
             
             return $this->render('user/editPass.html.twig');
     }
-
-    //Création d'une annonce
-    #[Route('/annonces/new', name: 'annonces_new', methods: ['GET', 'POST'])]
-    public function nouvelleAnnonce(Request $request): Response
-    {
-        $annonce = new Annonces();
-        $form = $this->createForm(AnnoncesType::class, $annonce);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $annonce->setUser($this->getUser());
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($annonce);
-            $entityManager->flush();
-            $this->addFlash("success", "Annonce créée avec succès");
-            return $this->redirectToRoute('user_index');
-        }
-
-        return $this->render('annonces/new.html.twig', [
-            'annonce' => $annonce,
-            'form' => $form->createView(),
-        ]);
-    }
     
 }
