@@ -4,9 +4,16 @@
 
 {% block body %}
 <div id="margin-t" class="container text-center">
-    <h1 class="text-light">Modifier l'annonce</h1>
-        {{ include('annonces/_form.html.twig', {'button_label': 'Valider'}) }}
-        {{ include('annonces/_delete_form.html.twig') }}
-        <a id="btn" class="btn btn-primary mt-2 mb-4 border-light"href="{{ path('user_index') }}">retour au profil</a>
+ <h1 class="text-light  text-center">Modifier l'annonce</h1>
+    <div class="row mt-4">
+        <div class="col">
+           <div class="text-start">{{ include('annonces/_form.html.twig', {'button_label': 'Valider'}) }}</div>
+           {{ include('annonces/_delete_form.html.twig') }}
+        </div> 
+    </div>
+     <a id="btn" class="btn btn-primary mt-2 mb-4 border-light"href="{{ path('user_index') }}">retour au profil</a>
 </div>
+{% endblock %}
+{% block javascripts %}
+    <script src="{{ asset('assets/js/images.js')}}"></script>
 {% endblock %}

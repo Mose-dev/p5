@@ -7,6 +7,7 @@ use App\Entity\Images;
 use App\Form\AnnoncesType;
 use App\Repository\AnnoncesRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -89,6 +90,27 @@ class AnnoncesController extends AbstractController
         }
 
         return $this->redirectToRoute('user_index');
+    }
+   /**
+    * @Route("/supprime/image/{id}", name="annonces_delete_image", methods={"DELETE"})
+    */
+    public function deleteImage(Images $image, Request $request){
+        $data = json_decode( $request->getContent(), true);
+        if($this->isCsrfTokenValid('delete'.$image->getId(), $data['_token'] )){
+            $nom = $image->getName();
+            unlink($this->getParameter('images_directory').'/'.$nom);
+            $em = $this->getDoctrine()->getManager();
+            $em->remove($image);
+            $em->flush();
+
+            return new JsonResponse(['success' => 1]);
+        
+        }else{
+
+            return new JsonResponse(['error' => 'Token invalide'], 400);
+        }
+
+
     }
    
 }
