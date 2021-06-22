@@ -7,7 +7,7 @@
                 <div>
                     <img src="{{ asset('./uploads/' ~ image.name) }}" alt="Image" width= "150" >
                     <a href="{{ path('annonces_delete_image', {'id': image.id}) }}"
-                            data-delete data-token="{{ csrf_token('delete' ~ image.id) }}">Supprimer</a> 
+                            data-delete data-token="{{ csrf_token('delete' ~ image.id) }}">Supprimer l'image</a> 
                 
                 </div>
                 

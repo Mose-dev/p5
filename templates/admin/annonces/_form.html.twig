@@ -1,7 +1,7 @@
 {{ form_start(form) }}
     {{ form_widget(form) }}
 
-        {% if app.request.attributes.get('_route') == 'admin_annonces_edit_profil' %}
+        {% if app.request.attributes.get('_route') == 'admin_annonces_edit' %}
             <h2 class="text-light">Images</h2>
             {% for image in annonce.images %}
                 <div>

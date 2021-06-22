@@ -13,13 +13,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 #[Route('/admin/categories', name: 'admin_categories_')]
 class CategoriesController extends AbstractController
 {
-    #[Route('/', name: 'home')]
-    public function index(CategoriesRepository $categoriesRepository): Response
-    {
-        return $this->render('admin/index.html.twig', [
-            'categories' => $categoriesRepository->findAll(),
-        ]);
-    }
     //Gestion des catégories
     
     #[Route('/index', name: 'index', methods: ['GET'])]

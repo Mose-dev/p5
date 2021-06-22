@@ -16,13 +16,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 #[Route('/admin/annonces', name: 'admin_annonces_')]
 class AnnoncesController extends AbstractController
 {
-    #[Route('/', name: 'home')]
-    public function index(): Response
-    {
-        return $this->render('admin/index.html.twig', [
-            'controller_name' => 'AnnoncesController',
-        ]);
-    }
     //Gestion des annonces page admin
     
     #[Route('/annonces/index', name: 'index', methods: ['GET'])]
@@ -33,9 +26,9 @@ class AnnoncesController extends AbstractController
         ]);
     }
     
-    //Création des annonces
+    //Création des annonces depuis le dashboard
     
-    #[Route('annonces/dash/new', name: 'dash_new', methods: ['GET', 'POST'])]
+    #[Route('/dash/new', name: 'dash_new', methods: ['GET', 'POST'])]
     public function new(Request $request, Security $security): Response
     {
         $annonce = new Annonces();
