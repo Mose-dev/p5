@@ -5,7 +5,7 @@
             <h2 class="text-light">Images</h2>
             {% for image in annonce.images %}
                 <div>
-                    <img src="{{ asset('./uploads/' ~ image.name) }}" alt="Image" width= "150" >
+                    <img src="{{ asset('./uploads/images/annonces/' ~ image.name) }}" alt="Image" width= "150" >
                     <a href="{{ path('annonces_delete_image', {'id': image.id}) }}"
                             data-delete data-token="{{ csrf_token('delete' ~ image.id) }}">Supprimer l'image</a> 
                 
