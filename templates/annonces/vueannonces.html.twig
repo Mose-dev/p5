@@ -7,16 +7,21 @@
     <div id="margin-t" class="container">
         <h1 class="text-light text-center mb-5">Annonces</h1>
         {% for annonce in annonces %}
-            <div class="card mb-3 w-75 bg-transparent border-0" >
+            <div class="card mb-3 w-75 bg-transparent border-0 text-light" >
                 <div class="row g-0">
                     <div class="col-md-4">
-                        <img src="{{ asset('./uploads/images/annonces/' ~ annonce.images[0].name) }}" alt="{{ annonce.title }}" style="max-width: 290px;">
+                    {% if annonce.images[0] is defined %}
+                        <img src="{{ asset(('./uploads/images/annonces/' ~ annonce.images[0].name)|imagine_filter('square')) }}" alt="{{ annonce.title }}">
+                    {% else %}
+                        <img src="{{ asset('./uploads/images/annonces/taf.jpg') }}" alt="{{ annonce.title }}" style="max-width: 290px;">
+                    {% endif %}
                     </div>
                     <div class="col-md-8">
-                        <div class="card-body mx-3">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                        <div class="card-body">
+                            <h5 class="card-title">{{ annonce.title }}</h5>
+                            <p>Catégorie : {{ annonce.categories.name }}</p>
+                            <p class="card-text">{{ annonce.content|striptags|u.truncate(60, '...')|raw }}</p>
+                           <a href="{{ path('annonces_detail',{slug: annonce.slug}) }}"> Voir l'annonce</a>
                         </div>
                     </div>
                 </div>

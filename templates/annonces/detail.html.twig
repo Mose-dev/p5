@@ -1,0 +1,47 @@
+
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ annonce.title }}{% endblock %}
+{% block stylesheets %}
+ <link rel="stylesheet" href="{{ asset('assets/css/styles.css') }}">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/axentix@1.3.1/dist/css/axentix.min.css">          
+{% endblock %}
+
+{% block body %}
+    <div id="margin-t" class="container">
+        <div class="caroulix" id="example-caroulix" data-ax="caroulix" data-ax-caroulix-autoplay-enabled="true" data-caroulix-indicators-enabled="true">
+            <div class="caroulix-arrow caroulix-prev">
+                <i class="fas fa-chevron-left"></i>
+            </div>
+            <div class="caroulix-arrow caroulix-next">
+                <i class="fas fa-chevron-right"></i>
+            </div>
+            {% for image in annonce.images %}
+                <div class="caroulix-item mx-auto">
+                    <img src="{{ asset(('./uploads/images/annonces/' ~ image.name)|imagine_filter('banniere')) }}" alt="{{ annonce.title }}">
+                </div> 
+            {% endfor %}
+        </div>
+        <h1 class="text-light text-center mb-5">Détail de l'annonce</h1>
+            <div class="card mb-3 mx-auto w-75 bg-transparent border-0 text-light" >
+                <div class="row g-0">
+                    <div class="col-md-4">
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body mx-3">
+                            <h5 class="card-title">{{ annonce.title }}</h5>
+                            <p>Catégorie : {{ annonce.categories.name }}</p>
+                            <p class="card-text">{{ annonce.content|raw}}</p>
+                            <p class="card-text"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>    
+    </div>
+{% endblock %}
+{% block javascripts %}
+<script>let caroulix = new Axentix.Caroulix('#example-caroulix');</script> 
+<script src="https://cdn.jsdelivr.net/npm/axentix@1.3.1/dist/js/axentix.min.js"></script>
+{% endblock %}
+
+

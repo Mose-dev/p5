@@ -10,14 +10,16 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Security;
 
-#[Route('/annonces')]
+#[Route('/annonces', name: "annonces_")]
 class AnnoncesController extends AbstractController
 {
-
-    #[Route('/new/annonces', name: 'new_annonces', methods: ['GET', 'POST'])]
+    // Créer une annonce
+    
+    #[Route('/new/annonces', name: 'new', methods: ['GET', 'POST'])]
     public function new(Request $request, Security $security ): Response
     {
         $annonce = new Annonces();
@@ -50,7 +52,9 @@ class AnnoncesController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}/edit', name: 'annonces_edit', methods: ['GET', 'POST'])]
+    //Modifier l'annonce
+
+    #[Route('/{id}/edit', name: 'edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Annonces $annonce): Response
     {
         $form = $this->createForm(AnnoncesType::class, $annonce);
@@ -79,20 +83,25 @@ class AnnoncesController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'annonces_delete', methods: ['POST'])]
+    //Supprimer l'annonce
+
+    #[Route('/{id}', name: 'delete', methods: ['POST'])]
     public function delete(Request $request, Annonces $annonce): Response
     {
         if ($this->isCsrfTokenValid('delete'.$annonce->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($annonce);
             $entityManager->flush();
-            $this->addFlash("success", "Annonce éliminée avec succès");
+            $this->addFlash("success", "Annonce élimidetainée avec succès");
         }
 
         return $this->redirectToRoute('user_index');
     }
-   /**
-    * @Route("/supprime/image/{id}", name="annonces_delete_image", methods={"DELETE"})
+    
+    //Supprimer l'image de lors de la modification de l'annonce
+   
+    /**
+    * @Route("/supprime/image/{id}", name="delete_image", methods={"DELETE"})
     */
     public function deleteImage(Images $image, Request $request){
         $data = json_decode( $request->getContent(), true);
@@ -116,15 +125,30 @@ class AnnoncesController extends AbstractController
     //Vue des annonces
 
      /**
-     * @Route("/vue", name="annonces_vue")
+     * @Route("/vue", name="vue")
      */
-    public function vueAnnonces(AnnoncesRepository $annoncesRepository): Response
+    public function vueAnnonces(AnnoncesRepository $annoncesRepository)
     {
         return $this->render('annonces/vueannonces.html.twig', [
             'annonces' => $annoncesRepository->findAll()
         ]);
     }
 
+    //Afficher le detail d'une annonce
 
+     /**
+     * @Route("/detail/{slug}", name="detail")
+     */
+    public function detailAnnonces($slug, AnnoncesRepository $annoncesRepository)
+    {
+        $annonce = $annoncesRepository->findOneBy(['slug' => $slug]);
+
+        if (!$annonce){
+            throw new NotFoundHttpException('Cette annonce n\'existe pas');
+        }
+        
+        return $this->render('annonces/detail.html.twig', compact('annonce'));
+
+    }
    
 }
