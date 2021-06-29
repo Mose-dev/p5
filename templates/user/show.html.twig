@@ -34,7 +34,8 @@
                     </tr>
                 </tbody>
             </table>
-            <a class="btn btn-primary mt-2 border-light" href="{{ path('admin_user_index') }}">Retour à l'index</a>
+            <div><a class="btn btn-success  mt-2 border-light" href="{{ path('admin_user_edit', {id: user.id}) }}">Modifier</a></div>
+            <div><a class="btn btn-primary mt-2 border-light" href="{{ path('admin_user_index') }}">Retour à l'index</a></div>
 
             {{ include('user/_delete_form.html.twig') }}
     </div>

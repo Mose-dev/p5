@@ -6,6 +6,7 @@ use App\Entity\User;
 use App\Entity\Annonces;
 use App\Form\ProfilType;
 use App\Form\AnnoncesType;
+use App\Form\UserEditType;
 use App\Repository\UserRepository;
 use App\Repository\AnnoncesRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -34,6 +35,31 @@ class UserController extends AbstractController
     {
         return $this->render('admin/users/index.html.twig', [
             'users' => $userRepository->findAll(),
+        ]);
+    }
+    /**
+     * @Route("/{id}/edit", name="edit", methods={"GET","POST"})
+     */
+    public function edit(Request $request, User $user, EntityManagerInterface $entityManager, UserPasswordEncoderInterface $encoder): Response
+    {
+        $form = $this->createForm(UserEditType::class, $user);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            //$hashed = $encoder->encodePassword($user, $user->getPassword());
+
+            //$user->setPassword($hashed); 
+
+            $this->getDoctrine()->getManager()->flush();
+
+            $this->addFlash("success", "Profil mis à jour avec succès");
+
+            return $this->redirectToRoute('admin_user_index');
+        }
+
+        return $this->render('admin/users/edit.html.twig', [
+            'user' => $user,
+            'form' => $form->createView(),
         ]);
     }
 }
