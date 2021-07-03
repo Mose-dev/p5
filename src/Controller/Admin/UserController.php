@@ -37,6 +37,9 @@ class UserController extends AbstractController
             'users' => $userRepository->findAll(),
         ]);
     }
+
+    //Modification des données de l'hadhérant, attribution d'un rôle
+    
     /**
      * @Route("/{id}/edit", name="edit", methods={"GET","POST"})
      */
@@ -46,9 +49,9 @@ class UserController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            //$hashed = $encoder->encodePassword($user, $user->getPassword());
+            $hashed = $encoder->encodePassword($user, $user->getPassword());
 
-            //$user->setPassword($hashed); 
+            $user->setPassword($hashed); 
 
             $this->getDoctrine()->getManager()->flush();
 
@@ -60,6 +63,18 @@ class UserController extends AbstractController
         return $this->render('admin/users/edit.html.twig', [
             'user' => $user,
             'form' => $form->createView(),
+        ]);
+    }
+
+    //Vue des données de l'hadhérant
+
+     /**
+     * @Route("/{id}", name="show", methods={"GET"})
+     */
+    public function show(User $user): Response
+    {
+        return $this->render('admin/users/show.html.twig', [
+            'user' => $user,
         ]);
     }
 }

@@ -8,7 +8,7 @@
             <div class="card-body mx-auto">
                 <h1 class="h3 mb-3 fs-1 text-light">Modifier le profil</br>ou</br>Attibuer un rôle</h1>
 
-                {{ include('user/_form.html.twig', {'button_label': 'Valider'}) }}
+                {{ include('admin/users/_form.html.twig', {'button_label': 'Valider'}) }}
 
                 <a class="btn btn-primary mt-2 border-light" href="{{ path('admin_user_index') }}">Retour à l'index</a>
             </div>

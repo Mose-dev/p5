@@ -22,7 +22,8 @@ class AnnoncesType extends AbstractType
                 'label'=> false,
                 'multiple'=> true,
                 'mapped'=> false,
-                'required'=> false
+                'required'=> false,
+                'attr' => ['class' => 'text-white']
 
             ])
         ;

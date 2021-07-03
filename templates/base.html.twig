@@ -21,18 +21,17 @@
                         <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="{{ path('app_home') }}">Accueil</a>
                         </li>
+                        {% if categories %}
+                        {% for categorie in categories %}
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ path('annonces_vue') }}">Sous-traitance</a>
+                            <a class="nav-link" href="{{ path('categories_search',{'slug': categorie.slug }) }}">{{ categorie.name }}</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Matériel</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Outillage</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Emploi</a>
-                        </li>
+                    
+                       {% endfor %}
+                       {% else %}
+                         {% endif %}
+            
+                       
                         <li class="nav-item">
                             <a class="nav-link" href="{{ path('app_login') }}">Connexion</a>
                         </li>
@@ -40,11 +39,11 @@
                             <a class="nav-link" href="{{ path('user_new') }}">Inscription</a>
                         </li>
                         <li class="nav-item">
-                            {% if is_granted('ROLE_USER') %}
-                                <a class=" btn btn-success text-light border-light d-inline" href="{{ path('user_index') }}">Retour au profil</a>
-                                <a class=" btn btn-danger text-light border-light d-inline " href="{{ path('app_logout') }}">Deconnexion</a>
-                            {% elseif is_granted('ROLE_USER' ~ 'ROLE_ADMIN') %}
+                            {% if is_granted('ROLE_ADMIN') %}
                                 <a class=" btn btn-success text-light border-light d-inline" href="{{ path('admin_home') }}">Retour administration</a>
+                                <a class=" btn btn-danger text-light border-light d-inline " href="{{ path('app_logout') }}">Deconnexion</a>  
+                            {% elseif is_granted('ROLE_USER') %}
+                                <a class=" btn btn-success text-light border-light d-inline" href="{{ path('user_index') }}">Retour au profil</a>
                                 <a class=" btn btn-danger text-light border-light d-inline " href="{{ path('app_logout') }}">Deconnexion</a>
                             {% endif %}
                         </li>
@@ -58,9 +57,4 @@
     <!--7206xcnscev3tsi2yucrh1dl3nv5n4ss7ivdq5xcgfdyw18o-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
     <script src="https://kit.fontawesome.com/656b2e3df2.js" crossorigin="anonymous"></script>
-    <!--app.user
-    The representation of the current user or null if there is none. 
-    The value stored in this variable can be a Symfony\Component\Security\Core\User\UserInterface object, 
-    any other object which implements a __toString() method or even a regular string.-->
 </html>
- 

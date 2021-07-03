@@ -13,7 +13,7 @@
                     {% if annonce.images[0] is defined %}
                         <img src="{{ asset(('./uploads/images/annonces/' ~ annonce.images[0].name)|imagine_filter('square')) }}" alt="{{ annonce.title }}">
                     {% else %}
-                        <img src="{{ asset('./uploads/images/annonces/taf.jpg') }}" alt="{{ annonce.title }}" style="max-width: 290px;">
+                        <img src="{{ asset('./uploads/images/annonces/vac.jpg') }}" alt="{{ annonce.title }}" style="max-width: 290px;">
                     {% endif %}
                     </div>
                     <div class="col-md-8">

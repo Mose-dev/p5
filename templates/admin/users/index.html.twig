@@ -28,7 +28,7 @@
                     <td>{{ user.name }}</td>
                     <td>{{ user.firstname }}</td>
                     <td>
-                        <a href="{{ path('user_show', {'id': user.id}) }}">Voir</a>
+                        <a href="{{ path('admin_user_show', {'id': user.id}) }}">Voir</a>
                     </td>
                 </tr>
             {% else %}

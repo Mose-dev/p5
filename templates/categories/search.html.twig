@@ -1,0 +1,22 @@
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Matériel{% endblock %}
+
+{% block body %}
+    <div id="margin-t" class="container">
+        <h1 class="text-light text-center mb-5">{{ categories[0] }}</h1>
+      {{ dump(annonces)}}
+      {% for annonce in annonces %}
+           {% if annonce.categories[0] is defined %}
+          <div>{{ annonce.content }}</div>
+           {% endif %}
+      {% endfor %}
+          
+      
+        
+       
+        
+    </div>
+    
+{% endblock %}
