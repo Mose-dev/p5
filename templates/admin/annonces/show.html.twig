@@ -22,11 +22,11 @@
                     </tr>
                     <tr>
                         <th>Content</th>
-                        <td>{{ annonce.content }}</td>
+                        <td>{{ annonce.content|striptags|raw  }}</td>
                     </tr>
                     <tr>
                         <th>CreatedAt</th>
-                        <td>{{ annonce.createdAt ? annonce.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                        <td>{{ annonce.createdAt ? annonce.createdAt|date('d-m-Y H:i:s') : '' }}</td>
                     </tr>
                 </tbody>
             </table>

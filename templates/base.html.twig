@@ -21,22 +21,15 @@
                         <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="{{ path('app_home') }}">Accueil</a>
                         </li>
-                        {% if categories %}
-                        {% for categorie in categories %}
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ path('categories_search',{'slug': categorie.slug }) }}">{{ categorie.name }}</a>
-                        </li>
-                    
-                       {% endfor %}
-                       {% else %}
-                         {% endif %}
-            
                        
                         <li class="nav-item">
                             <a class="nav-link" href="{{ path('app_login') }}">Connexion</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ path('user_new') }}">Inscription</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ path('contact') }}">Contact</a>
                         </li>
                         <li class="nav-item">
                             {% if is_granted('ROLE_ADMIN') %}

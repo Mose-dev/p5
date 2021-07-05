@@ -23,8 +23,8 @@
                             <td>{{ annonce.id }}</td>
                             <td>{{ annonce.title }}</td>
                             <td>{{ annonce.slug }}</td>
-                            <td>{{ annonce.content }}</td>
-                            <td>{{ annonce.createdAt ? annonce.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                            <td>{{ annonce.content|striptags|raw  }}</td>
+                            <td>{{ annonce.createdAt ? annonce.createdAt|date('d-m-Y H:i:s') : '' }}</td>
                             <td>
                                 <a href="{{ path('admin_annonces_show', {'id': annonce.id}) }}">Voir</a>
                             </td>

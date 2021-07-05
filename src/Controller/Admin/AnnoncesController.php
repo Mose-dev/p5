@@ -61,13 +61,25 @@ class AnnoncesController extends AbstractController
         ]);
     }
     
-    // Vue des annonces
+    // Vue des annonces en index
     
     #[Route('/{id}/show', name: 'show', methods: ['GET'])]
     public function showAnnonces(Annonces $annonce): Response
     {
         return $this->render('admin/annonces/show.html.twig', [
             'annonce' => $annonce,
+        ]);
+    }
+
+     //Vue des annonces
+
+     /**
+     * @Route("/vue", name="vue")
+     */
+    public function vueAnnonces(AnnoncesRepository $annoncesRepository)
+    {
+        return $this->render('admin/annonces/vueannonces.html.twig', [
+            'annonces' => $annoncesRepository->findAll()
         ]);
     }
 

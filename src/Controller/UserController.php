@@ -6,6 +6,7 @@ use App\Entity\User;
 use App\Form\UserType;
 use App\Entity\Annonces;
 use App\Form\ProfilType;
+use App\Form\ContactType;
 use App\Form\AnnoncesType;
 use App\Repository\UserRepository;
 use App\Form\ChangePasswordFormType;
