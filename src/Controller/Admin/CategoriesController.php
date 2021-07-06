@@ -33,6 +33,7 @@ class CategoriesController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($category);
             $entityManager->flush();
+            $this->addFlash("success", "Catégorie créée avec succès");
 
             return $this->redirectToRoute('admin_categories_index');
         }
@@ -57,6 +58,7 @@ class CategoriesController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
+            $this->addFlash("success", "Catégorie modifiée avec succès");
 
             return $this->redirectToRoute('admin_categories_index');
         }
@@ -73,6 +75,7 @@ class CategoriesController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($category);
             $entityManager->flush();
+            $this->addFlash("success", "Catégorie éliminée avec succès");
         }
 
         return $this->redirectToRoute('admin_categories_index');

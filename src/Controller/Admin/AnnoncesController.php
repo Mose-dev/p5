@@ -51,6 +51,7 @@ class AnnoncesController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($annonce);
             $entityManager->flush();
+            $this->addFlash("success", "Annonce créée avec succès");
 
             return $this->redirectToRoute('admin_annonces_index');
         }
@@ -71,7 +72,7 @@ class AnnoncesController extends AbstractController
         ]);
     }
 
-     //Vue des annonces
+     //Vue des annonces en images
 
      /**
      * @Route("/vue", name="vue")
@@ -104,6 +105,8 @@ class AnnoncesController extends AbstractController
                 $annonce->addImage($img);
             }
             $this->getDoctrine()->getManager()->flush();
+            $this->addFlash("success", "Annonce modifiée avec succès");
+            
             return $this->redirectToRoute('admin_annonces_index');
         }
 
@@ -122,6 +125,7 @@ class AnnoncesController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($annonce);
             $entityManager->flush();
+            $this->addFlash("success", "Annonce éliminée avec succès");
         }
 
         return $this->redirectToRoute('admin_annonces_index');

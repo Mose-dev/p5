@@ -40,14 +40,18 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ path('user_new') }}">Inscription</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ path('contact') }}">Contact</a>
+                        </li>
                     </ul>
                 </div>
             </div>
         </nav>
-        <div class="mt-5"></div>
-        {% for message in app.flashes('success') %}
-            <div class="alert alert-success text-center" role="alert">{{ message }}</div>
-        {% endfor %}
+        <div class="mt-5">
+            {% for message in app.flashes('success') %}
+                <div class="alert alert-success text-center" role="alert">{{ message }}</div>
+            {% endfor %}
+        </div>
         <!--Jumbotron-->
         <div id="margin-t1" class="container text-center">
             <div class="row">

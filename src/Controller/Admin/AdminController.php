@@ -114,6 +114,7 @@ class AdminController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($annonce);
             $entityManager->flush();
+            $this->addFlash("success", "Annonce créée avec succès");
 
             return $this->redirectToRoute('admin_profil');
         }
@@ -145,6 +146,8 @@ class AdminController extends AbstractController
                 $annonce->addImage($img);
             }
             $this->getDoctrine()->getManager()->flush();
+            $this->addFlash("success", "Annonce mdifiée avec succès");
+            
             return $this->redirectToRoute('admin_profil');
         }
 
@@ -163,6 +166,7 @@ class AdminController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($annonce);
             $entityManager->flush();
+            $this->addFlash("success", "Annonce éliminée avec succès");
         }
 
         return $this->redirectToRoute('admin_profil');

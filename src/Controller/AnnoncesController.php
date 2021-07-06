@@ -92,7 +92,7 @@ class AnnoncesController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($annonce);
             $entityManager->flush();
-            $this->addFlash("success", "Annonce élimidetainée avec succès");
+            $this->addFlash("success", "Annonce éliminée avec succès");
         }
 
         return $this->redirectToRoute('user_index');

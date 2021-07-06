@@ -32,7 +32,7 @@ class MainController extends AbstractController
             $email = (new TemplatedEmail())
             
             ->from($contact->get('email')->getData())
-            ->to('vous@domaine.fr')
+            ->to('moisevelez543@gmail.com')
             ->subject('Contact depuis le site libre & Change')
             ->htmlTemplate('emails/contact.html.twig')
             ->context([
@@ -42,6 +42,7 @@ class MainController extends AbstractController
             ])
             ;
             $mailer->send($email);
+            $this->addFlash("success", "Email envoyé avec succès");
 
             return $this->redirectToRoute('contact');
         }

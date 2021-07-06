@@ -9,6 +9,7 @@
 
 {% block body %}
     <div id="margin-t" class="container">
+        <h1 class="text-light text-center mb-5">Détail de l'annonce</h1>
         <div class="caroulix" id="example-caroulix" data-ax="caroulix" data-ax-caroulix-autoplay-enabled="true" data-caroulix-indicators-enabled="true">
             <div class="caroulix-arrow caroulix-prev">
                 <i class="fas fa-chevron-left"></i>
@@ -22,7 +23,6 @@
                 </div> 
             {% endfor %}
         </div>
-        <h1 class="text-light text-center mb-5">Détail de l'annonce</h1>
             <div class="card mb-3 mx-auto w-75 bg-transparent border-0 text-light" >
                 <div class="row g-0">
                     <div class="col-md-4">
@@ -31,15 +31,12 @@
                         <div class="card-body mx-3">
                             <h5 class="card-title">{{ annonce.title }}</h5>
                             <p>Catégorie : {{ annonce.categories.name }}</p>
+                            <p class="card-text">Date de création : {{ annonce.createdAt ? annonce.createdAt|date('d-m-Y H:i:s') : '' }}</p>
                             <p class="card-text">{{ annonce.content|raw}}</p>
-                            <p class="card-text"></p>
                         </div>
                     </div>
                 </div>
             </div> 
-            <div><a class="btn btn-success mt-2 border-light" href="{{ path('admin_annonces_edit', {'id': annonce.id}) }}">Modifier</a></div>
-            <div><a class="btn btn-primary mt-2 border-light" href="{{ path('admin_annonces_index') }}">Retour à l'index</a></div>
-            {{ include('admin/annonces/delete.html.twig') }} 
     </div>
 {% endblock %}
 {% block javascripts %}
