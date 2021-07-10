@@ -15,19 +15,21 @@ class UserEditType extends AbstractType
     {
         $builder
             ->add('email',EmailType::class)
+            ->add('name')
+            ->add('firstname')
+            ->add('password')
             ->add('roles', ChoiceType::class,[
                 'choices' => [
                     'Utilisateur' => 'ROLE_USER',
-                    'Administrateur' => 'ROLE_ADMIN'
+                    'Administrateur' => 'ROLE_ADMIN',
                 ],
-                'expanded' => true,
+                'expanded' => false,
                 'multiple' => true,
-                'label' => 'Rôles'
+                'label' => 'Rôles',
 
             ])
-            ->add('password')
-            ->add('name')
-            ->add('firstname')
+          
+            
         ;
     }
 
