@@ -3,24 +3,24 @@
 namespace App\Controller;
 
 use App\Form\ContactType;
+use App\Repository\CategoriesRepository;
+use App\Controller\CoreGeneralController;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use App\Controller\CoreGeneralController;
 
 class MainController extends AbstractController
 {
-    /**
-     * @Route("/", name="app_home")
-     */
-    public function index(): Response
+    #[Route('/', name: 'app_home')]
+    public function indexMenu(CategoriesRepository $categoriesRepository, Request $request): Response
     {
-        return $this->render('main/index.html.twig', [
-            'controller_name' => 'MainController',
-        ]);
+        $session = $request->getSession();
+        $session->set('menu', $categoriesRepository->findAll());
+        
+        return $this->render('main/index.html.twig');
     }
     #[Route('/contact', name: 'contact')]
     public function contact(Request $request, MailerInterface $mailer): Response

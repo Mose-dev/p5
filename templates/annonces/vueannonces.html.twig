@@ -1,5 +1,4 @@
-
-{% extends 'menu/index.html.twig' %}
+{% extends 'base.html.twig' %}
 
 {% block title %}annonces{% endblock %}
 
@@ -27,7 +26,5 @@
                 </div>
             </div>    
         {% endfor %}
-        <div><a class="btn btn-success mt-2 border-light" href="{{ path('admin_annonces_dash_new') }}">Créer une annonce</a></div>
-        <div><a class="btn btn-primary mt-2 border-light" href="{{ path('admin_home') }}">Retour administration</a></div>      
     </div>
 {% endblock %}

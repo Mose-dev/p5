@@ -72,18 +72,6 @@ class AnnoncesController extends AbstractController
         ]);
     }
 
-     //Vue des annonces en images
-
-     /**
-     * @Route("/vue", name="vue")
-     */
-    public function vueAnnonces(AnnoncesRepository $annoncesRepository)
-    {
-        return $this->render('admin/annonces/vueannonces.html.twig', [
-            'annonces' => $annoncesRepository->findAll()
-        ]);
-    }
-
     //modification des annonces
     
     #[Route('/{id}/edit/annonces', name: 'edit', methods: ['GET', 'POST'])]

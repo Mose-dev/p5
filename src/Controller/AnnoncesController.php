@@ -139,4 +139,15 @@ class AnnoncesController extends AbstractController
 
     }
    
+    //Vue des annonces en images
+
+     /**
+     * @Route("/vue", name="vue")
+     */
+    public function vueAnnonces(AnnoncesRepository $annoncesRepository)
+    {
+        return $this->render('annonces/vueannonces.html.twig', [
+            'annonces' => $annoncesRepository->findAll()
+        ]);
+    }
 }

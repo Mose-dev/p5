@@ -1,16 +1,16 @@
 body{
     background: #057dba;
 } 
-/*formulaires et contenu des pages en général*/
-#margin-t{
-    margin-top: 16%;
-}
-#margin-t1{
-    margin-top: 5%;
-}
 /*Boutons de validation et navigation*/
 .btn-primary, .btn-success, .btn-danger{
     width: 190px;
+}
+/*Formulaires et contenu des pages en général*/
+#margin-t{
+    margin-top: 10%;
+}
+#margin-t1{
+    margin-top: 5%;
 }
 a{
     color:white;
@@ -19,5 +19,19 @@ a{
 #change{
     color: white;
 }
-
-
+/*Media queries des formulaires et contenu des pages en général*/
+@media all and (max-width: 320px){
+    #margin-t{
+        margin-top: 25%;
+    }
+}
+@media all and (max-width: 320px){
+    #margin-t{
+        margin-top: 25%;
+    }
+}
+@media all and (max-width: 575px){
+    #margin-t{
+        margin-top: 20%;
+    }
+}
