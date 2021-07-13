@@ -118,8 +118,6 @@ class AnnoncesController extends AbstractController
 
             return new JsonResponse(['error' => 'Token invalide'], 400);
         }
-
-
     }
     
     //Afficher le detail d'une annonce
