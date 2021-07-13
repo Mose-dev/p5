@@ -5,8 +5,8 @@
         <title>{% block title %}{% endblock %}</title>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
         <link rel="stylesheet" href="{{ asset('assets/css/styles.css') }}">
-        {% block stylesheets %}{% endblock %}
         <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+        {% block stylesheets %}{% endblock %}
         <style>
             .cRetour {
             border-radius:3px;
@@ -39,8 +39,8 @@
             jQuery(document).ready(function() {
             var duration = 500;
             jQuery(window).scroll(function() {
-                if (jQuery(this).scrollTop() > 100) {
-                // Si un défillement de 100 pixels ou plus.
+                if (jQuery(this).scrollTop() > 50) {
+                // Si un défillement de 50 pixels ou plus.
                 // Ajoute le bouton
                 jQuery('.cRetour').fadeIn(duration);
                 } else {
@@ -48,7 +48,6 @@
                 jQuery('.cRetour').fadeOut(duration);
                 }
             });
-                            
             jQuery('.cRetour').click(function(event) {
                 // Un clic provoque le retour en haut animé.
                 event.preventDefault();

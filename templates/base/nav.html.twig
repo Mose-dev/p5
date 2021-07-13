@@ -9,7 +9,7 @@
                         <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="{{ path('app_home') }}">Accueil</a>
                         </li>
-                         {% if app.session.get('menu') %}
+                            {% if app.session.get('menu') %}
                                 {% for categorie in app.session.get('menu')  %}
                                     <li class="nav-item">
                                         <a class="nav-link" href="{{ path('categories_search',{'slug': categorie.slug }) }}">{{ categorie.name }}</a>
