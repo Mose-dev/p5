@@ -1,45 +1,49 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}{{ annonce.title }}{% endblock %}
-{% block stylesheets %}
-    <link rel="stylesheet" href="{{ asset('assets/css/styles.css') }}">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/axentix@1.3.1/dist/css/axentix.min.css">          
-{% endblock %}
-
+{% block stylesheets %}{% endblock %}
 {% block body %}
     <div id="margin-t" class="container">
         <h1 class="text-light text-center mb-5">Détail de l'annonce</h1>
-        <div class="caroulix" id="example-caroulix" data-ax="caroulix" data-ax-caroulix-autoplay-enabled="true" data-caroulix-indicators-enabled="true">
-            <div class="caroulix-arrow caroulix-prev">
-                <i class="fas fa-chevron-left"></i>
-            </div>
-            <div class="caroulix-arrow caroulix-next">
-                <i class="fas fa-chevron-right"></i>
-            </div>
-            {% for image in annonce.images %}
-                <div class="caroulix-item mx-auto">
-                    <img src="{{ asset(('./uploads/images/annonces/' ~ image.name)|imagine_filter('banniere')) }}" alt="{{ annonce.title }}">
-                </div> 
-            {% endfor %}
-        </div>
-            <div class="card mb-3 mx-auto w-75 bg-transparent border-0 text-light" >
-                <div class="row g-0">
-                    <div class="col-md-4">
-                    </div>
-                    <div class="col-md-8">
-                        <div class="card-body mx-3">
-                            <h5 class="card-title">{{ annonce.title }}</h5>
-                            <p>Catégorie : {{ annonce.categories.name }}</p>
-                            <p class="card-text">Date de création : {{ annonce.createdAt ? annonce.createdAt|date('d-m-Y H:i:s') : '' }}</p>
-                            <p class="card-text">{{ annonce.content|raw}}</p>
+        <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                {% for image in annonce.images %}
+                    {% if loop.first %}
+                        <div class="carousel-item active">
+                            <img src="{{ asset(('./uploads/images/annonces/' ~ image.name)|imagine_filter('banniere')) }}" class="d-block w-100" alt="{{ annonce.title }}">
                         </div>
-                    </div>
+                    {% else %}
+                        <div class="carousel-item">
+                            <img src="{{ asset(('./uploads/images/annonces/' ~ image.name)|imagine_filter('banniere')) }}" class="d-block w-100" alt="{{ annonce.title }}">
+                        </div> 
+                    {% endif %}
+                {% endfor %}
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+    </div>
+    <div class="card mb-3 mx-auto w-75 bg-transparent border-0 text-light" >
+        <div class="row g-0">
+            <div class="col-md-4">
+            </div>
+            <div class="col-md-8">
+                <div class="card-body mx-3">
+                    <h5 class="card-title">{{ annonce.title }}</h5>
+                    <p>Catégorie : {{ annonce.categories.name }}</p>
+                    <p class="card-text">Date de création : {{ annonce.createdAt ? annonce.createdAt|date('d-m-Y H:i:s') : '' }}</p>
+                    <p class="card-text">{{ annonce.content|raw}}</p>
                 </div>
-            </div> 
+            </div>
+        </div> 
     </div>
 {% endblock %}
 {% block javascripts %}
-<script src="https://kit.fontawesome.com/656b2e3df2.js" crossorigin="anonymous"></script>
-<script>let caroulix = new Axentix.Caroulix('#example-caroulix');</script> 
-<script src="https://cdn.jsdelivr.net/npm/axentix@1.3.1/dist/js/axentix.min.js"></script>
+    <script src="https://kit.fontawesome.com/656b2e3df2.js" crossorigin="anonymous"></script>
 {% endblock %}

@@ -1,46 +1,48 @@
- <nav class="navbar fixed-top fixed navbar-expand-lg navbar-dark bg-primary">
-            <div class="container-fluid">
-                <a id="change"class="navbar-brand" href="{{ path('app_home') }}">Libre & Change</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                        <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="{{ path('app_home') }}">Accueil</a>
-                        </li>
-                            {% if app.session.get('menu') %}
-                                {% for categorie in app.session.get('menu')  %}
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="{{ path('categories_search',{'slug': categorie.slug }) }}">{{ categorie.name }}</a>
-                                    </li>
-                                {% endfor %}
-                            {% else %}
-                            {% endif %}
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ path('app_login') }}">Connexion</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ path('user_new') }}">Inscription</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ path('contact') }}">Contact</a>
-                        </li>
-                        <li class="nav-item">
-                            {% if is_granted('ROLE_ADMIN') %}
-                                <a class=" btn btn-success text-light border-light d-inline" href="{{ path('admin_home') }}">Retour administration</a>
-                                <a class=" btn btn-danger text-light border-light d-inline " href="{{ path('app_logout') }}">Deconnexion</a>  
-                            {% elseif is_granted('ROLE_USER') %}
-                                <a class=" btn btn-success text-light border-light d-inline" href="{{ path('user_index') }}">Retour au profil</a>
-                                <a class=" btn btn-danger text-light border-light d-inline " href="{{ path('app_logout') }}">Deconnexion</a>
-                            {% endif %}
-                        </li>
-                    </ul>
+ <header>  
+    <nav class="navbar fixed-top fixed navbar-expand-lg navbar-dark bg-primary">
+                <div class="container-fluid">
+                    <a id="change"class="navbar-brand" href="{{ path('app_home') }}">Libre & Change</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                            <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="{{ path('app_home') }}">Accueil</a>
+                            </li>
+                                {% if app.session.get('menu') %}
+                                    {% for categorie in app.session.get('menu')  %}
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="{{ path('categories_search',{'slug': categorie.slug }) }}">{{ categorie.name }}</a>
+                                        </li>
+                                    {% endfor %}
+                                {% else %}
+                                {% endif %}
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ path('app_login') }}">Connexion</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ path('user_new') }}">Inscription</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ path('contact') }}">Contact</a>
+                            </li>
+                            <li class="nav-item">
+                                {% if is_granted('ROLE_ADMIN') %}
+                                    <a class=" btn btn-success text-light border-light d-inline" href="{{ path('admin_home') }}">Retour administration</a>
+                                    <a class=" btn btn-danger text-light border-light d-inline " href="{{ path('app_logout') }}">Deconnexion</a>  
+                                {% elseif is_granted('ROLE_USER') %}
+                                    <a class=" btn btn-success text-light border-light d-inline" href="{{ path('user_index') }}">Retour au profil</a>
+                                    <a class=" btn btn-danger text-light border-light d-inline " href="{{ path('app_logout') }}">Deconnexion</a>
+                                {% endif %}
+                            </li>
+                        </ul>
+                    </div>
                 </div>
+            </nav>
+            <div class="mt-5">
+                {% for message in app.flashes('success') %}
+                    <div class="alert alert-success text-center" role="alert">{{ message }}</div>
+                {% endfor %}
             </div>
-        </nav>
-         <div class="mt-5">
-            {% for message in app.flashes('success') %}
-                <div class="alert alert-success text-center" role="alert">{{ message }}</div>
-            {% endfor %}
-        </div>
+</header> 
