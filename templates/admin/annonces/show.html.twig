@@ -3,36 +3,36 @@
 {% block title %}Voir l'annonce{% endblock %}
 
 {% block body %}
-    <div id="margin-t" class="container text-center">
+    <div id="margin-t1" class="container text-center">
         <h1 class="text-light">Voir l'annonce</h1>
 
-            <table class="table">
-                <tbody>
-                    <tr>
-                        <th>Id</th>
-                        <td>{{ annonce.id }}</td>
-                    </tr>
-                    <tr>
-                        <th>Title</th>
-                        <td>{{ annonce.title }}</td>
-                    </tr>
-                    <tr>
-                        <th>Slug</th>
-                        <td>{{ annonce.slug }}</td>
-                    </tr>
-                    <tr>
-                        <th>Content</th>
-                        <td>{{ annonce.content|striptags|raw  }}</td>
-                    </tr>
-                    <tr>
-                        <th>CreatedAt</th>
-                        <td>{{ annonce.createdAt ? annonce.createdAt|date('d-m-Y H:i:s') : '' }}</td>
-                    </tr>
+        <table class="table">
+            <tbody>
+                <tr>
+                    <th>Id</th>
+                    <td>{{ annonce.id }}</td>
+                </tr>
+                <tr>
+                    <th>Title</th>
+                    <td>{{ annonce.title }}</td>
+                </tr>
+                <tr>
+                    <th>Slug</th>
+                    <td>{{ annonce.slug }}</td>
+                </tr>
+                <tr>
+                    <th>Content</th>
+                    <td>{{ annonce.content|striptags|raw  }}</td>
+                </tr>
+                <tr>
+                    <th>CreatedAt</th>
+                    <td>{{ annonce.createdAt ? annonce.createdAt|date('d-m-Y H:i:s') : '' }}</td>
+                </tr>
                 </tbody>
-            </table>
+        </table>
 
-            <div><a class="btn btn-success mt-2 border-light" href="{{ path('admin_annonces_edit', {'id': annonce.id}) }}">Modifier</a></div>
-            <div><a class="btn btn-primary mt-2 border-light" href="{{ path('admin_annonces_index') }}">Retour à l'index</a></div>
-            {{ include('admin/annonces/delete.html.twig') }}
+        <div><a class="btn btn-success mt-2 border-light" href="{{ path('admin_annonces_edit', {'id': annonce.id}) }}">Modifier</a></div>
+        <div><a class="btn btn-primary mt-2 border-light" href="{{ path('admin_annonces_index') }}">Retour à l'index</a></div>
+        {{ include('admin/annonces/delete.html.twig') }}
     </div>    
 {% endblock %}

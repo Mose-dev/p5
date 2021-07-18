@@ -5,12 +5,15 @@ body{
 .btn-primary, .btn-success, .btn-danger{
     width: 190px;
 }
+#buttonSpacing{
+    margin-top: 8%;
+}
 /*Formulaires et contenu des pages en général*/
 #margin-t{
-    margin-top: 10%;
+    margin-top: 5%;
 }
 #margin-t1{
-    margin-top: 5%;
+    margin-top: 10%;
 }
 a{
     color:white;
@@ -25,13 +28,22 @@ a{
         margin-top: 25%;
     }
 }
-@media all and (max-width: 320px){
+@media all and (max-width: 410px){
     #margin-t{
         margin-top: 25%;
+    }
+    #buttonSpacing{
+        margin-top: 30%;
     }
 }
 @media all and (max-width: 575px){
     #margin-t{
         margin-top: 20%;
+    }
+   
+}
+@media all and (max-width: 700px){
+    #buttonSpacing{
+        margin-top: 18%;
     }
 }

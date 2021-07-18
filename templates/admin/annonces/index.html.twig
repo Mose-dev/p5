@@ -3,7 +3,7 @@
 {% block title %}Index des annonces{% endblock %}
 
 {% block body %}
-    <div id="margin-t" class="container text-center">
+    <div id="margin-t1" class="container text-center">
         <h1 class="text-light">Index des annonces</h1>
 
             <table class="table">
@@ -37,6 +37,6 @@
                 </tbody>
             </table>
                 <div><a class="btn btn-success mt-2 border-light" href="{{ path('admin_annonces_dash_new') }}">Créer une annonce</a></div>  
-                <div><a class="btn btn-primary mt-2 border-light" href="{{ path('admin_home') }}">Retour administration</a></div>
+                <div><a class="btn btn-primary mt-2 mb-4 border-light" href="{{ path('admin_home') }}">Retour administration</a></div>
     </div>
 {% endblock %}

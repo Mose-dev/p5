@@ -3,21 +3,14 @@
 namespace App\Controller;
 
 use App\Entity\User;
-use App\Form\UserType;
-use App\Entity\Annonces;
 use App\Form\ProfilType;
-use App\Form\ContactType;
-use App\Form\AnnoncesType;
-use App\Repository\UserRepository;
-use App\Form\ChangePasswordFormType;
-use App\Repository\AnnoncesRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Security\Core\Validator\Constraints\UserPassword;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+use Symfony\Component\Security\Core\Security;
 
 /**
  * @Route("/user")
@@ -29,42 +22,13 @@ class UserController extends AbstractController
     {
         return $this->render('user/index.html.twig');
     }
-
-    /**
-     * @Route("/new", name="user_new", methods={"GET","POST"})
-     */
-    public function new(Request $request, EntityManagerInterface $entityManager, UserPasswordEncoderInterface $encoder): Response
-    {
-        $user = new User();
-        $form = $this->createForm(UserType::class, $user);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            
-            $hashed = $encoder->encodePassword($user, $user->getPassword());
-
-            $user->setPassword($hashed); 
-            
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($user);
-            $entityManager->flush();
-            
-            $this->addFlash("success", "Bienvenue vous pouvez à présent vous connecter");
-            
-            return $this->redirectToRoute('app_home');
-        }
-
-        return $this->render('user/new.html.twig', [
-            'user' => $user,
-            'form' => $form->createView(),
-        ]);
-    }
-
     /**
      * @Route("/{id}/edit", name="user_edit", methods={"GET","POST"})
      */
-    public function edit(Request $request, User $user, EntityManagerInterface $entityManager, UserPasswordEncoderInterface $encoder): Response
+    public function edit(Request $request, User $user, EntityManagerInterface $entityManager, UserPasswordEncoderInterface $encoder, Security $security): Response
     {
+        $user = $security->getUser();
+        
         $form = $this->createForm(ProfilType::class, $user);
         $form->handleRequest($request);
 

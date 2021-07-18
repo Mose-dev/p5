@@ -2,17 +2,17 @@
 
 namespace App\Controller;
 
-use App\Entity\Annonces;
 use App\Entity\Images;
+use App\Entity\Annonces;
 use App\Form\AnnoncesType;
 use App\Repository\AnnoncesRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Security;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 #[Route('/annonces', name: "annonces_")]
 class AnnoncesController extends AbstractController
@@ -55,7 +55,7 @@ class AnnoncesController extends AbstractController
     //Modifier l'annonce
 
     #[Route('/{id}/edit', name: 'edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, Annonces $annonce): Response
+    public function edit(security $security, Request $request, Annonces $annonce): Response
     {
         $form = $this->createForm(AnnoncesType::class, $annonce);
         $form->handleRequest($request);

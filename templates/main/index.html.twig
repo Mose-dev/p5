@@ -1,4 +1,4 @@
-{% extends 'base.html.twig' %}
+{% extends 'base/rebase.html.twig' %}
 
 {% block title %}Accueil{% endblock %}
 
@@ -13,7 +13,7 @@
         <h2  class="text-center mt-4 text-light fs-2">Votre site d'opportunités et d'échanges entre professionnels<h2>
         <h3 class="text-center mt-3 text-light fs-2">Retrouver et diffuser</h3>
         <div class="card w-75 mx-auto bg-transparent border-0">
-            <div class="card-body mx-auto mb-5">
+            <div class="card-body mx-auto">
                 <ul class="fs-2 list-unstyled text-light">
                     <li>Des propositions de sous-traitance</li>
                     <li>Du matériel pour la construction</li>
@@ -23,6 +23,7 @@
                 </ul>
             </div>
         </div>
+        <h4 class="text-center text-light fs-3">Pour publier vos annonces merci de vous inscrire</h4>
     </div>
-      {% include 'base/footer.html.twig' %}
+    {% include 'base/footer.html.twig' %}
 {% endblock %}

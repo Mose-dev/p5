@@ -32,7 +32,7 @@ class ContactType extends AbstractType
             ])
             ->add('Envoyer', SubmitType::class,[
                 'attr' => [
-                    'class' => 'btn-success'
+                    'class' => 'btn-success mt-3 border-light'
                 ] 
                 
             ])

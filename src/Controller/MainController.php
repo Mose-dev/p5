@@ -53,4 +53,27 @@ class MainController extends AbstractController
         ]);
     }
     
+    //Route du fichier à propos
+
+
+    #[Route('/propos', name: 'apropos')]
+    public function aPropos(): Response
+    {
+        return $this->render('main/apropos.html.twig');
+    }
+     
+    #[Route('/redirection', name: 'redirection', methods: ['GET'])]
+    public function redirection(): Response
+    {
+       
+        if ($this->isGranted('ROLE_ADMIN')){
+            
+            return $this->redirectToRoute('admin_home');
+        
+        }else{
+            return $this->redirectToRoute('user_index');
+        }
+
+    }
+    
 }
