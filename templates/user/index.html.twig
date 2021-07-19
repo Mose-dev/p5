@@ -84,8 +84,10 @@
 					</div>
 				<div class="col-8">
 					{{ annonce.title}}
-					<a href="{{ path('annonces_edit',{'id': annonce.id} )}}">Modifier</a>
-				</div>  
+					{% if is_granted ("annonce_edit", annonce) %}
+						<a href="{{ path('annonces_edit',{'id': annonce.id} )}}">Modifier</a>
+					{% endif %}
+				</div> 
 			</div>   
 			{% endfor %} 
 		</div>

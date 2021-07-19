@@ -55,8 +55,9 @@ class AnnoncesController extends AbstractController
     //Modifier l'annonce
 
     #[Route('/{id}/edit', name: 'edit', methods: ['GET', 'POST'])]
-    public function edit(security $security, Request $request, Annonces $annonce): Response
+    public function edit(Request $request, Annonces $annonce): Response
     {
+        $this->denyAccessUnlessGranted('annonce_edit', $annonce);
         $form = $this->createForm(AnnoncesType::class, $annonce);
         $form->handleRequest($request);
 
