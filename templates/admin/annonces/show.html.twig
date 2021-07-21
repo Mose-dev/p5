@@ -6,14 +6,14 @@
     <div id="margin-t1" class="container text-center">
         <h1 class="text-light">Voir l'annonce</h1>
 
-        <table class="table">
+        <table class="table text-white">
             <tbody>
                 <tr>
                     <th>Id</th>
                     <td>{{ annonce.id }}</td>
                 </tr>
                 <tr>
-                    <th>Title</th>
+                    <th>Titre</th>
                     <td>{{ annonce.title }}</td>
                 </tr>
                 <tr>
@@ -21,11 +21,11 @@
                     <td>{{ annonce.slug }}</td>
                 </tr>
                 <tr>
-                    <th>Content</th>
+                    <th>Contenu</th>
                     <td>{{ annonce.content|striptags|raw  }}</td>
                 </tr>
                 <tr>
-                    <th>CreatedAt</th>
+                    <th>Date</th>
                     <td>{{ annonce.createdAt ? annonce.createdAt|date('d-m-Y H:i:s') : '' }}</td>
                 </tr>
                 </tbody>

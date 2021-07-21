@@ -6,7 +6,7 @@
     <div id="margin-t1" class="container text-center">
         <h1 class="text-light">Voir l'adhérent</h1>
 
-        <table class="table">
+        <table class="table text-white">
             <tbody>
                 <tr>
                     <th>Id</th>
@@ -17,19 +17,19 @@
                     <td>{{ user.email }}</td>
                 </tr>
                 <tr>
-                    <th>Roles</th>
+                    <th>Rôles</th>
                     <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
                 </tr>
                 <tr>
-                    <th>Password</th>
+                    <th>Mot de passe</th>
                     <td>{{ user.password }}</td>
                 </tr>
                 <tr>
-                    <th>Name</th>
+                    <th>Nom</th>
                     <td>{{ user.name }}</td>
                 </tr>
                 <tr>
-                    <th>Firstname</th>
+                    <th>Prénom</th>
                     <td>{{ user.firstname }}</td>
                 </tr>
             </tbody>

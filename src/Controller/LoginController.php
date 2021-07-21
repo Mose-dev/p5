@@ -12,11 +12,11 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
-
+#[Route('/login', name: 'login_')] 
 class LoginController extends AbstractController
 {
     /**
-     * @Route("/new", name="login_new", methods={"GET","POST"})
+     * @Route("/new", name="new", methods={"GET","POST"})
      */
     public function new(Request $request, EntityManagerInterface $entityManager, UserPasswordEncoderInterface $encoder): Response
     {
@@ -44,4 +44,15 @@ class LoginController extends AbstractController
             'form' => $form->createView(),
         ]);
     }
-}
+
+     //Avis avant inscription
+    
+     /**
+     * @Route("/avis", name="avis")
+     */
+    public function vueAnnonces()
+    {
+        return $this->render('login/readConditions.html.twig');
+    }
+    
+}  

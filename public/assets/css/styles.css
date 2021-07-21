@@ -10,7 +10,7 @@ body{
 }
 /*Formulaires et contenu des pages en général*/
 #margin-t{
-    margin-top: 5%;
+    margin-top: 8%;
 }
 #margin-t1{
     margin-top: 10%;
@@ -32,7 +32,7 @@ a{
         margin-top: 25%;
     }
 }
-@media all and (max-width: 410px){
+@media all and (max-width: 360px){
     #margin-t{
         margin-top: 25%;
     }
@@ -40,14 +40,26 @@ a{
         margin-top: 30%;
     }
 }
-@media all and (max-width: 575px){
+@media all and (max-width: 576px){
     #margin-t{
         margin-top: 20%;
     }
-   
+    #margin-t1{
+        margin-top: 20%;
+    }
+    
 }
-@media all and (max-width: 700px){
+@media all and (max-width: 768px){
     #buttonSpacing{
-        margin-top: 18%;
+        margin-top: 20%;
+    }
+    #margin-t{
+        margin-top: 20%;
+    }
+    #margin-t1{
+        margin-top: 20%;
+    }
+    #margin-t3{
+        margin-top: 10%;
     }
 }

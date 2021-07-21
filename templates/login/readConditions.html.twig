@@ -11,11 +11,12 @@
         {% else %}
             <div class="card w-75 mx-auto bg-transparent border-0 mx-auto">
                 <div class="card-body mx-auto">
-                    <h2 class="h3 mb-3 fs-1 text-light">S'inscrire</h2>
-                    {{ include('user/_form.html.twig', {'button_label': 'Valider'}) }}
+                    <h1 class="h3 mb-3 fs-1 text-light">Avant de vous inscrire</br>veuillez lire 
+                        <a class="btn btn-primary border-light text-decoration-none" href="{{ path('apropos') }}">À propos du site</a>
+                    </h1>
+                    
                 </div>
             </div>
         {% endif %}
     </div>
 {% endblock %}
-   
