@@ -15,9 +15,24 @@ class UserEditType extends AbstractType
     {
         $builder
             ->add('email',EmailType::class)
-            ->add('name')
-            ->add('firstname')
-            ->add('password')
+            ->add('name', null, [
+                'label' => 'Nom',
+                'label_translation_parameters' => [
+                    '%company%' => 'ACME Inc.',
+                ],
+            ])
+            ->add('firstname', null, [
+                'label' => 'Prenom',
+                'label_translation_parameters' => [
+                    '%company%' => 'ACME Inc.',
+                ],
+            ])
+            ->add('password', null, [
+                'label' => 'Mot de passe',
+                'label_translation_parameters' => [
+                    '%company%' => 'ACME Inc.',
+                ],
+            ]) 
             ->add('roles', ChoiceType::class,[
                 'choices' => [
                     'Utilisateur' => 'ROLE_USER',

@@ -8,10 +8,10 @@
             <div class="card-body mx-auto">
                 <h1 class="text-light">Reinitialisation du mot de passe</h1>
                 <p class="text-light">
-                    If an account matching your email exists, then an email was just sent that contains a link that you can use to reset your password.
-                    This link will expire in {{ resetToken.expirationMessageKey|trans(resetToken.expirationMessageData, 'ResetPasswordBundle') }}.
+                    Un email contenant un lien vient d'être envoyé à l'adresse que vous avez indiqué. Cliquez sur ce lien pour changer votre mot de passe.
+                   Le lien expirera dans {{ resetToken.expirationMessageKey|trans(resetToken.expirationMessageData, 'ResetPasswordBundle') }}.
                 </p>
-                <p class="text-light">If you don't receive an email please check your spam folder or <a class="text-dark" href="{{ path('app_forgot_password_request') }}">Try again</a></p>
+                <p class="text-light">Si votre message n'apparaît pas, veuillez consulter votre dossier Spam <a class="text-dark" href="{{ path('app_forgot_password_request') }}"> Réessayer</a></p>
             </div>
         </div>
     </div>

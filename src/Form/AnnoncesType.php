@@ -15,8 +15,18 @@ class AnnoncesType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('title')
-            ->add('content', CKEditorType::class)
+        ->add('title', null, [
+            'label' => 'Titre',
+            'label_translation_parameters' => [
+                '%company%' => 'ACME Inc.',
+            ],
+        ])
+        ->add('content', CKEditorType::class, [
+            'label' => 'Contenu',
+            'label_translation_parameters' => [
+                '%company%' => 'ACME Inc.',
+            ],
+        ])
             ->add('categories')
             ->add('images', FileType::class, [
                 'label'=> false,

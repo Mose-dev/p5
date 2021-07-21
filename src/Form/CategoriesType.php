@@ -12,7 +12,12 @@ class CategoriesType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name')
+        ->add('name', null, [
+            'label' => 'Nom',
+            'label_translation_parameters' => [
+                '%company%' => 'ACME Inc.',
+            ],
+        ])
             ->add('parent')
         ;
     }

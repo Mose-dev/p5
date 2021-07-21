@@ -22,6 +22,10 @@ a{
 #change{
     color: white;
 }
+/*Validation des conditions générales d'utilisation*/
+#valider{
+    visibility: hidden;
+}
 /*Media queries des formulaires et contenu des pages en général*/
 @media all and (max-width: 320px){
     #margin-t{

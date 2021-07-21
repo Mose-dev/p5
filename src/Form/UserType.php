@@ -16,10 +16,24 @@ class UserType extends AbstractType
         $builder
             ->add('email',EmailType::class)
             //->add('roles')
-            ->add('name')
-            ->add('firstname')
-            ->add('password', PasswordType::class)
-        ;
+            ->add('name', null, [
+                'label' => 'Nom',
+                'label_translation_parameters' => [
+                    '%company%' => 'ACME Inc.',
+                ],
+            ])
+            ->add('firstname', null, [
+                'label' => 'Prenom',
+                'label_translation_parameters' => [
+                    '%company%' => 'ACME Inc.',
+                ],
+            ])
+            ->add('password', PasswordType::class, [
+                'label' => 'Mot de passe',
+                'label_translation_parameters' => [
+                    '%company%' => 'ACME Inc.',
+                ],
+            ]); 
     }
 
     public function configureOptions(OptionsResolver $resolver)
