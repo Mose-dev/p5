@@ -37,6 +37,7 @@
                 <div class="card-body mx-3">
                     <h5 class="card-title">{{ annonce.title }}</h5>
                     <p>Catégorie : {{ annonce.categories.name }}</p>
+                     <p>Numéro : {{ annonce.id }}</p>
                     <p class="card-text">Date de création : {{ annonce.createdAt ? annonce.createdAt|date('d-m-Y H:i:s') : '' }}</p>
                     <p class="card-text">{{ annonce.content|raw}}</p>
                 </div>

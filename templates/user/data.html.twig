@@ -1,0 +1,70 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Données personnelles de {{ app.user.firstname}} {% endblock %}
+
+{% block body %}
+	<div class="mt-5">
+		{% for message in app.flashes('success') %}
+			<div class="alert alert-success text-center" role="alert">{{ message }}</div>
+		{% endfor %}
+	</div>
+	<!--Jumbotron-->
+	<div id="margin-t" class="container text-center">
+		<div class="row">
+			<div class="col mt-5">
+				<div class="jumbotron bg-transparent">
+					<h1 class="text-center text-light">Données personnelles de {{ app.user.firstname}} {{ app.user.name}}</h1>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--Début de la partie contenu -->
+	<div class="container mt-5">
+		<div class="row justify-content-center">
+			<div class="col-xl-3 col-md-6 mb-4">
+				<div class="card shadow bg-primary text-white border-light">
+					<div class="card-body">
+						<div class="col-auto">
+                            <p>Nom : {{ app.user.name}}</p>
+                            <p>Prénom: {{ app.user.firstname}}</p>
+                            <p>Email : {{ app.user.email}}</p>
+						</div>
+					</div>
+				</div>
+			</div>         
+            <div class="text-center">
+                <p><a class="btn btn-primary mt-2 border-light" href="{{ path('user_data_download') }}">Exporter les données</a></p>
+                <p><a class="btn btn-primary border-light" href="{{ path('user_index') }}">Retour au profil</a></p>
+            </div>
+        </div>
+	</div> 
+	<div class="container ">
+		<h1 class="text-center text-light">Annonces de {{ app.user.firstname}} {{ app.user.name}} ({{ app.user.annonces|length }})</h1>
+		<div class="card mx-auto bg-transparent border-0">
+			<div class="card-body mx-auto">
+			{% for annonce in app.user.annonces %}
+				<div class="row mt-4 mx-auto text-white">
+                    <div class="col-4">
+                        Titre : 
+                    </div>
+                    <div class="col-8">
+                        {{ annonce.title}}
+                    </div> 
+			    </div>
+                <div class="row mt-4 mx-auto text-white">
+                    <div class="col-4">
+                        Valeur : 
+                    </div>
+                    <div class="col-8">
+                        {{ annonce.content|raw}}
+                    </div> 
+			    </div>
+                {% for image in annonce.images %}
+                    <img src="{{ asset(('./uploads/images/annonces/' ~ image.name)|imagine_filter('square')) }}" class="d-block w-100  mx-auto" alt="{{ annonce.title }}">
+                {% endfor %}      
+			{% endfor %} 
+		</div>
+	</div>
+{% endblock %}
+
+	  

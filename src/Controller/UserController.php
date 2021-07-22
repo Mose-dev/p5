@@ -11,6 +11,8 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Security\Core\Security;
+use Dompdf\Dompdf;
+use Dompdf\Options;
 
 /**
  * @Route("/user")
@@ -22,6 +24,7 @@ class UserController extends AbstractController
     {
         return $this->render('user/index.html.twig');
     }
+    
     /**
      * @Route("/{id}/edit", name="user_edit", methods={"GET","POST"})
      */
@@ -64,7 +67,9 @@ class UserController extends AbstractController
 
         return $this->redirectToRoute('admin_user_index');
     }
+    
     //Changement du mot de passe
+    
     #[Route('/password/reset', name: 'password_reset', methods: ['GET', 'POST'])]
     public function newPassword(Request $request, UserPasswordEncoderInterface $PasswordEncoder)
     {
@@ -88,6 +93,54 @@ class UserController extends AbstractController
         }
             
             return $this->render('user/editPass.html.twig');
+    }
+    
+    #[Route('/data', name: 'user_data')]
+    public function UserData(): Response
+    {
+        return $this->render('user/data.html.twig');
+    }
+    
+    #[Route('/data/download', name: 'user_data_download')]
+    public function UserDataDownload()
+    {
+        //On définit les options du PDF
+        $pdfOptions = new Options();
+        
+        //Police par défaut
+        $pdfOptions->set('defaultFont', 'Arial');
+        $pdfOptions->setIsRemoteEnabled(true);
+
+        //On instancie Dompdf
+        $dompdf = new Dompdf($pdfOptions);
+        $context = stream_context_create([
+           'ssl' => [
+               'verify_peer' => false,
+               'verify_peer_name' => false,
+               'allow_self_signed' => true
+           ]
+           ]);
+        $dompdf->setHttpContext($context);
+
+        //On génère le html
+        $html = $this->renderView('user/download.html.twig');
+
+        $dompdf->loadHtml($html);
+        $dompdf->setPaper('A4', 'portrait');
+        $dompdf->render();
+
+        //On génère un nom de fichier
+        $fichier = 'user-data-'. $this->getUser()->getId() .'.pdf'; 
+
+        //On envoie le pdf au navigateur
+        $dompdf->stream($fichier,[
+            'attachment' => true
+        ]);
+
+        return new Response();
+
+
+
     }
     
 }

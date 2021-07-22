@@ -18,16 +18,16 @@
                     </div>
                 </div>
                 <div class="card mb-3 bg-transparent border-0 text-light mx-auto">        
-                        <div class="row">
-                            <div class="col">
-                                <div class="card-body">
-                                    <h5 class="card-title">{{ annonce.title }}</h5>
-                                    <p>Catégorie : {{ annonce.categories.name }}</p>
-                                    <p class="card-text">{{ annonce.content|striptags|u.truncate(70, '...')|raw }}</p>
-                                    <a href="{{ path('annonces_detail',{slug: annonce.slug}) }}"> Voir l'annonce</a>
-                                </div>
+                     <div class="row">
+                        <div class="col">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ annonce.title }}</h5>
+                                <p>Catégorie : {{ annonce.categories.name }}</p>
+                                <p class="card-text">{{ annonce.content|striptags|u.truncate(70, '...')|raw }}</p>
+                                <a href="{{ path('annonces_detail',{slug: annonce.slug}) }}"> Voir l'annonce</a>
                             </div>
                         </div>
+                    </div>
                 </div>    
         {% endfor %}
     </div>
