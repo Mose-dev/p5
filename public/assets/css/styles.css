@@ -26,6 +26,13 @@ a{
 #valider{
     visibility: hidden;
 }
+/*Couleur des champs input*/
+#profil label, #annonces label, #formconnexion label, .class{
+    color: white !important;
+}
+.required{
+    color: white;
+}
 /*Media queries des formulaires et contenu des pages en général*/
 @media all and (max-width: 320px){
     #margin-t{

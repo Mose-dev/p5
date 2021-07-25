@@ -61,6 +61,15 @@ class MainController extends AbstractController
     {
         return $this->render('main/apropos.html.twig');
     }
+
+    //Route des mentions légales
+
+    #[Route('/mentions', name: 'mentions')]
+    public function mentions(): Response
+    {
+        return $this->render('main/mentions.html.twig');
+    }
+    
      
     #[Route('/redirection', name: 'redirection', methods: ['GET'])]
     public function redirection(): Response
@@ -70,7 +79,8 @@ class MainController extends AbstractController
             
             return $this->redirectToRoute('admin_home');
         
-        }else{
+        }else
+        {
             return $this->redirectToRoute('user_index');
         }
 
